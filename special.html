@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Memories of Kiayara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-pink: #8a1a4a;
+            --pink: #c2185b;
+            --soft-pink: #f8bbd9;
+            --dark-bg: #0a0a0a;
+            --glass-bg: rgba(139, 26, 74, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-light: #ffffff;
+            --text-soft: #ffcce6;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(194, 24, 91, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(138, 26, 74, 0.15) 0%, transparent 20%);
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Floating Hearts Background */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            color: var(--pink);
+            font-size: 20px;
+            opacity: 0.3;
+            animation: floatHeart 15s infinite linear;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .nav-center {
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .nav-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--soft-pink);
+            text-shadow: 0 0 10px rgba(255, 204, 230, 0.5);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+        
+        .nav-btn {
+            background: rgba(194, 24, 91, 0.3);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(194, 24, 91, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(194, 24, 91, 0.4);
+        }
+        
+        /* Banner Section - Enhanced */
+        .banner-section {
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            min-height: 400px;
+            transition: min-height 0.5s ease;
+        }
+        
+        .banner-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-slide.banner-video {
+            background-color: #000;
+        }
+        
+        .banner-slide.banner-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .banner-dot.active {
+            background: var(--pink);
+            transform: scale(1.2);
+        }
+        
+        .banner-info {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            z-index: 5;
+        }
+        
+        .banner-category {
+            display: inline-block;
+            background: var(--pink);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--soft-pink);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--pink), transparent);
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-soft);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 0 15px rgba(194, 24, 91, 0.7);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* Media Cards */
+        .media-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+            transform-origin: center;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(194, 24, 91, 0.3);
+            border-color: rgba(194, 24, 91, 0.5);
+        }
+        
+        .media-card.active {
+            box-shadow: 0 0 0 3px var(--pink), 0 15px 30px rgba(194, 24, 91, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .photo-image, .video-container {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .video-container {
+            position: relative;
+        }
+        
+        .family-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 5;
+        }
+        
+        .mute-btn, .play-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .media-overlay {
+            padding: 1.5rem;
+        }
+        
+        .media-category {
+            display: inline-block;
+            background: var(--pink);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .media-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .media-heart-btn {
+            background: transparent;
+            border: none;
+            color: var(--soft-pink);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .media-heart-btn.liked {
+            color: #ff4081;
+            animation: heartBeat 0.5s;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .download-btn {
+            background: var(--pink);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn:hover {
+            background: #9c1147;
+        }
+        
+        /* Fullscreen View */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            padding: 1rem;
+        }
+        
+        .fullscreen-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .fullscreen-content {
+            max-width: 95%;
+            max-height: 95%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fullscreen-img, .fullscreen-video {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(194, 24, 91, 0.5);
+            object-fit: contain;
+        }
+        
+        .fullscreen-video {
+            width: 90vw;
+            max-height: 80vh;
+        }
+        
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fullscreen-nav {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1001;
+        }
+        
+        .fullscreen-nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fullscreen-download {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--pink);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1001;
+        }
+        
+        /* Slideshow Indicator */
+        .slideshow-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(194, 24, 91, 0.8);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Tap Instructions */
+        .tap-instructions {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            max-width: 200px;
+            display: none;
+            z-index: 99;
+            border-left: 3px solid var(--pink);
+        }
+        
+        .tap-instructions.show {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-heart {
+            font-size: 4rem;
+            color: var(--pink);
+            animation: pulse 1s infinite;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .banner-container {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .nav-title {
+                font-size: 1.8rem;
+                order: 1;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .banner-container {
+                height: 300px;
+            }
+            
+            .fullscreen-nav {
+                padding: 0 10px;
+            }
+            
+            .fullscreen-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .fullscreen-download {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .banner-container {
+                height: 250px;
+            }
+            
+            .nav-btn span {
+                display: none;
+            }
+            
+            .nav-btn {
+                padding: 0.7rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .fullscreen-video {
+                width: 95vw;
+            }
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--pink);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1002;
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-align: center;
+            max-width: 90%;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Double Tap Animation */
+        .double-tap-animation {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        .double-tap-animation.show {
+            animation: doubleTap 0.6s ease;
+        }
+        
+        @keyframes doubleTap {
+            0% { transform: scale(0.5); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-heart">
+            <i class="fas fa-heart"></i>
+        </div>
+    </div>
+    
+    <!-- Floating Hearts Background -->
+    <div class="hearts-background" id="hearts-container"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <button class="nav-btn" id="back-btn" onclick="window.location.href='home.html'">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Home</span>
+            </button>
+        </div>
+        
+        <div class="nav-center">
+            <h1 class="nav-title">Special Memories of Kiayara</h1>
+        </div>
+        
+        <div class="nav-right">
+            <button class="nav-btn" id="slideshow-toggle">
+                <i class="fas fa-play"></i>
+                <span>Start Slideshow</span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Banner Section -->
+    <section class="banner-section">
+        <div class="banner-container" id="banner-container">
+            <!-- Banner slides are added by JavaScript -->
+        </div>
+        <div class="banner-nav" id="banner-nav">
+            <!-- Banner dots are added by JavaScript -->
+        </div>
+        <div class="banner-info" id="banner-info">
+            <!-- Banner info added by JavaScript -->
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="section-title">Precious Moments</h2>
+        
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All Memories</button>
+            <button class="filter-btn" data-filter="baby">Baby Girl</button>
+            <button class="filter-btn" data-filter="nanna">vedios</button>
+            <button class="filter-btn" data-filter="family">Family</button>
+        </div>
+        
+        <div class="gallery-container" id="gallery-container">
+            <!-- Images will be loaded dynamically -->
+        </div>
+    </section>
+    
+    <!-- Fullscreen View -->
+    <div class="fullscreen-overlay" id="fullscreen-overlay">
+        <button class="fullscreen-close" id="fullscreen-close">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="fullscreen-nav">
+            <button class="fullscreen-nav-btn" id="prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="fullscreen-nav-btn" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="fullscreen-content" id="fullscreen-content">
+            <!-- Content will be added by JavaScript -->
+        </div>
+        <button class="fullscreen-download" id="fullscreen-download">
+            <i class="fas fa-download"></i> Download
+        </button>
+    </div>
+    
+    <!-- Slideshow Indicator -->
+    <div class="slideshow-indicator" id="slideshow-indicator">
+        <i class="fas fa-pause"></i>
+        <span>Slideshow Running</span>
+    </div>
+    
+    <!-- Tap Instructions -->
+    <div class="tap-instructions" id="tap-instructions">
+        <p><i class="fas fa-hand-point-up"></i> Single tap: Show in banner</p>
+        <p><i class="fas fa-hand-point-up"></i> Double tap: Open fullscreen</p>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+    
+    <script>
+        // App State
+        const state = {
+            currentBannerMode: 'original', // 'original', 'gallery', 'slideshow'
+            isSlideshowActive: false,
+            currentGalleryIndex: 0,
+            currentFullscreenIndex: 0,
+            lastTapTime: 0,
+            tapTimeout: null,
+            galleryItems: [],
+            filteredGalleryItems: [],
+            likedItems: new Set()
+        };
+
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                const size = Math.random() * 20 + 10;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                heart.style.fontSize = `${size}px`;
+                heart.style.left = `${left}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Original banner images data
+        const bannerImages = [
+             { 
+                src: 'images/firstcry.jpeg', 
+                title: 'firstsmile',
+                category: 'baby'
+            },
+            { 
+                src: 'images/birthday/4.jpeg', 
+                title: 'Birthday joy',
+                category: 'baby'
+            },
+            { 
+                src: 'images/kiara/firstpic.jpeg', 
+                title: 'firstpic',
+                category: 'baby'
+            },
+            { 
+                src: 'images/kiara/cutie.jpeg', 
+                title: 'cutie',
+                category: 'baby'
+            },
+            { 
+                src: 'images/amma/amma13.jpeg', 
+                title: 'little princess',
+                category: 'family'
+            },
+             { 
+                src: 'images/nana/nana29.jpeg', 
+                title: 'little princess',
+                category: 'family'
+            }
+        ];
+        
+        // Gallery data
+        const galleryData = [
+            // Baby images
+            { id: 1, type: 'image', category: 'baby', src: 'images/kiara/baby1.jpeg', title: 'Sweet Baby Smile', desc: 'First beautiful smile' },
+            { id: 2, type: 'image', category: 'baby', src: 'images/kiara/baby2.jpeg', title: 'Sleeping Angel', desc: 'Peaceful sleep' },
+            { id: 3, type: 'image', category: 'baby', src: 'images/kiara/baby3.jpeg', title: 'First Steps', desc: 'Learning to walk' },
+            { id: 4, type: 'image', category: 'baby', src: 'images/kiara/baby4.jpeg', title: 'Bath Time Fun', desc: 'Enjoying bath time' },
+            { id: 5, type: 'image', category: 'baby', src: 'images/kiara/baby5.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+             { id: 6, type: 'image', category: 'baby', src: 'images/kiara/baby6.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+              { id: 7, type: 'image', category: 'baby', src: 'images/kiara/baby7.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+               { id: 8, type: 'image', category: 'baby', src: 'images/kiara/baby8.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                { id: 9, type: 'image', category: 'baby', src: 'images/kiara/baby9.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                 { id: 10, type: 'image', category: 'baby', src: 'images/kiara/baby10.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                  { id: 11, type: 'image', category: 'baby', src: 'images/kiara/baby11.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                   { id: 12, type: 'image', category: 'baby', src: 'images/kiara/baby12.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+              { id: 13, type: 'image', category: 'baby', src: 'images/kiara/baby13.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+               { id: 14, type: 'image', category: 'baby', src: 'images/kiara/baby14.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                { id: 15, type: 'image', category: 'baby', src: 'images/kiara/baby15.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                 { id: 16, type: 'image', category: 'baby', src: 'images/kiara/baby16.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                  { id: 17, type: 'image', category: 'baby', src: 'images/kiara/baby17.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                   { id: 18, type: 'image', category: 'baby', src: 'images/kiara/baby18.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                    { id: 19, type: 'image', category: 'baby', src: 'images/kiara/baby19.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                     { id: 20, type: 'image', category: 'baby', src: 'images/kiara/baby20.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                      { id: 21, type: 'image', category: 'baby', src: 'images/kiara/baby21.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                       { id: 22, type: 'image', category: 'baby', src: 'images/kiara/baby22.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                        { id: 23, type: 'image', category: 'baby', src: 'images/kiara/baby23.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                         { id: 24, type: 'image', category: 'baby', src: 'images/kiara/baby24.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                          { id: 25, type: 'image', category: 'baby', src: 'images/kiara/baby25.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                           { id: 26, type: 'image', category: 'baby', src: 'images/kiara/baby26.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                            { id: 27, type: 'image', category: 'baby', src: 'images/kiara/baby27.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                             { id: 28, type: 'image', category: 'baby', src: 'images/kiara/baby28.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                              { id: 29, type: 'image', category: 'baby', src: 'images/kiara/baby29.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                               { id: 30, type: 'image', category: 'baby', src: 'images/kiara/baby20.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                { id: 31, type: 'image', category: 'baby', src: 'images/kiara/baby31.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                 { id: 32, type: 'image', category: 'baby', src: 'images/kiara/baby32.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                  { id: 33, type: 'image', category: 'baby', src: 'images/kiara/baby33.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                   { id: 34, type: 'image', category: 'baby', src: 'images/kiara/baby34.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                    { id: 35, type: 'image', category: 'baby', src: 'images/kiara/baby35.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                     { id: 36, type: 'image', category: 'baby', src: 'images/kiara/baby36.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                      { id: 37, type: 'image', category: 'baby', src: 'images/kiara/baby37.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                       { id: 38, type: 'image', category: 'baby', src: 'images/kiara/baby38.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                        { id: 39, type: 'image', category: 'baby', src: 'images/kiara/baby39.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                         { id: 40, type: 'image', category: 'baby', src: 'images/kiara/baby40.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                     { id: 41, type: 'image', category: 'baby', src: 'images/kiara/baby41.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                      { id: 42, type: 'image', category: 'baby', src: 'images/kiara/baby42.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                       { id: 43, type: 'image', category: 'baby', src: 'images/kiara/baby43.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                        { id: 44, type: 'image', category: 'baby', src: 'images/kiara/baby44.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                         { id: 45, type: 'image', category: 'baby', src: 'images/kiara/baby45.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                          { id: 46, type: 'image', category: 'baby', src: 'images/kiara/baby46.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                           { id: 47, type: 'image', category: 'baby', src: 'images/kiara/baby47.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                            { id: 48, type: 'image', category: 'baby', src: 'images/kiara/baby48.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                             { id: 49, type: 'image', category: 'baby', src: 'images/kiara/baby49.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                              { id: 50, type: 'image', category: 'baby', src: 'images/kiara/baby50.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                               { id: 51, type: 'image', category: 'baby', src: 'images/kiara/baby51.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                { id: 52, type: 'image', category: 'baby', src: 'images/kiara/baby52.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                 { id: 53, type: 'image', category: 'baby', src: 'images/kiara/baby53.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                  { id: 54, type: 'image', category: 'baby', src: 'images/kiara/baby54.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                   { id: 55, type: 'image', category: 'baby', src: 'images/kiara/baby55.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                    { id: 56, type: 'image', category: 'baby', src: 'images/kiara/baby56.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                     { id: 57, type: 'image', category: 'baby', src: 'images/kiara/baby57.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                      { id: 58, type: 'image', category: 'baby', src: 'images/kiara/baby58.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                       { id: 59, type: 'image', category: 'baby', src: 'images/kiara/baby59.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                        { id: 60, type: 'image', category: 'baby', src: 'images/kiara/baby60.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                         { id: 61, type: 'image', category: 'baby', src: 'images/kiara/baby61.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                          { id: 62, type: 'image', category: 'baby', src: 'images/kiara/baby62.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                           { id: 63, type: 'image', category: 'baby', src: 'images/kiara/baby63.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                            { id: 64, type: 'image', category: 'baby', src: 'images/kiara/baby64.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                             { id: 65, type: 'image', category: 'baby', src: 'images/kiara/baby65.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                              { id: 66, type: 'image', category: 'baby', src: 'images/kiara/baby66.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                               { id: 67, type: 'image', category: 'baby', src: 'images/kiara/baby67.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                { id: 68, type: 'image', category: 'baby', src: 'images/kiara/baby68.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                 { id: 69, type: 'image', category: 'baby', src: 'images/kiara/baby69.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                  { id: 70, type: 'image', category: 'baby', src: 'images/kiara/baby70.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                   { id: 71, type: 'image', category: 'baby', src: 'images/kiara/baby71.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                    { id: 72, type: 'image', category: 'baby', src: 'images/kiara/baby72.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                     { id: 73, type: 'image', category: 'baby', src: 'images/kiara/baby73.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                      { id: 74, type: 'image', category: 'baby', src: 'images/kiara/baby74.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                       { id: 75, type: 'image', category: 'baby', src: 'images/kiara/baby75.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                        { id: 76, type: 'image', category: 'baby', src: 'images/kiara/baby76.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                         { id: 77, type: 'image', category: 'baby', src: 'images/kiara/baby77.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                          { id: 78, type: 'image', category: 'baby', src: 'images/kiara/baby78.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                           { id: 79, type: 'image', category: 'baby', src: 'images/kiara/baby79.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                            { id: 80, type: 'image', category: 'baby', src: 'images/kiara/baby80.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                             { id: 81, type: 'image', category: 'baby', src: 'images/kiara/baby81.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                              { id: 82, type: 'image', category: 'baby', src: 'images/kiara/baby82.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                               { id: 83, type: 'image', category: 'baby', src: 'images/kiara/baby83.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                { id: 84, type: 'image', category: 'baby', src: 'images/kiara/baby84.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                 { id: 85, type: 'image', category: 'baby', src: 'images/kiara/baby85.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                  { id: 86, type: 'image', category: 'baby', src: 'images/kiara/baby86.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                   { id: 87, type: 'image', category: 'baby', src: 'images/kiara/baby87.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                    { id: 88, type: 'image', category: 'baby', src: 'images/kiara/baby88.jpeg', title: 'Play Time', desc: 'Playing with toys' }, 
+                                                                     { id: 89, type: 'image', category: 'baby', src: 'images/kiara/baby89.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+ { id: 90, type: 'image', category: 'baby', src: 'images/kiara/90.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+  { id: 91, type: 'image', category: 'baby', src: 'images/kiara/91.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+   { id: 92, type: 'image', category: 'baby', src: 'images/kiara/92.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+    { id: 93, type: 'image', category: 'baby', src: 'images/kiara/93.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+     { id: 94, type: 'image', category: 'baby', src: 'images/kiara/94.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+      { id: 95, type: 'image', category: 'baby', src: 'images/kiara/95.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+       { id: 96, type: 'image', category: 'baby', src: 'images/kiara/96.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+        { id: 97, type: 'image', category: 'baby', src: 'images/kiara/97.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+         { id: 98, type: 'image', category: 'baby', src: 'images/kiara/98.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+          { id: 99, type: 'image', category: 'baby', src: 'images/kiara/99.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+           { id: 100, type: 'image', category: 'baby', src: 'images/kiara/100.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+            { id: 101, type: 'image', category: 'baby', src: 'images/kiara/101.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+             { id: 102, type: 'image', category: 'baby', src: 'images/kiara/102.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+              { id: 103, type: 'image', category: 'baby', src: 'images/kiara/103.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+               { id: 104, type: 'image', category: 'baby', src: 'images/kiara/104.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                { id: 105, type: 'image', category: 'baby', src: 'images/kiara/105.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                 { id: 106, type: 'image', category: 'baby', src: 'images/kiara/106.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                  { id: 107, type: 'image', category: 'baby', src: 'images/kiara/107.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                   { id: 108, type: 'image', category: 'baby', src: 'images/kiara/108.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                    { id: 109, type: 'image', category: 'baby', src: 'images/kiara/109.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                     { id: 110, type: 'image', category: 'baby', src: 'images/kiara/110.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                      { id: 111, type: 'image', category: 'baby', src: 'images/kiara/111.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                       { id: 112, type: 'image', category: 'baby', src: 'images/kiara/112.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                        { id: 113, type: 'image', category: 'baby', src: 'images/kiara/113.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                         { id: 114, type: 'image', category: 'baby', src: 'images/kiara/114.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                          { id: 115, type: 'image', category: 'baby', src: 'images/kiara/115.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                           { id: 116, type: 'image', category: 'baby', src: 'images/kiara/116.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                            { id: 117, type: 'image', category: 'baby', src: 'images/kiara/117.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                             { id: 118, type: 'image', category: 'baby', src: 'images/kiara/118.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                              { id: 119, type: 'image', category: 'baby', src: 'images/kiara/119.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                               { id: 120, type: 'image', category: 'baby', src: 'images/kiara/120.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+ { id: 121, type: 'image', category: 'baby', src: 'images/kiara/121.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+  { id: 122, type: 'image', category: 'baby', src: 'images/kiara/122.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+   { id: 123, type: 'image', category: 'baby', src: 'images/kiara/123.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+    { id: 124, type: 'image', category: 'baby', src: 'images/kiara/124.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+     { id: 125, type: 'image', category: 'baby', src: 'images/kiara/125.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+      { id: 126, type: 'image', category: 'baby', src: 'images/kiara/126.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+       { id: 127, type: 'image', category: 'baby', src: 'images/kiara/127.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+        { id: 128, type: 'image', category: 'baby', src: 'images/kiara/128.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+         { id: 129, type: 'image', category: 'baby', src: 'images/kiara/129.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+          { id: 130, type: 'image', category: 'baby', src: 'images/kiara/130.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+           { id: 131, type: 'image', category: 'baby', src: 'images/kiara/131.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+            { id: 132, type: 'image', category: 'baby', src: 'images/kiara/132.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+             { id: 133, type: 'image', category: 'baby', src: 'images/kiara/133.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+              { id: 134, type: 'image', category: 'baby', src: 'images/kiara/134.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+               { id: 135, type: 'image', category: 'baby', src: 'images/kiara/135.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                { id: 136, type: 'image', category: 'baby', src: 'images/kiara/136.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                 { id: 137, type: 'image', category: 'baby', src: 'images/kiara/137.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                  { id: 138, type: 'image', category: 'baby', src: 'images/kiara/138.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                   { id: 139, type: 'image', category: 'baby', src: 'images/kiara/139.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                    { id: 140, type: 'image', category: 'baby', src: 'images/kiara/140.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                     { id: 141, type: 'image', category: 'baby', src: 'images/kiara/141.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                      { id: 142, type: 'image', category: 'baby', src: 'images/kiara/142.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                       { id: 143, type: 'image', category: 'baby', src: 'images/kiara/143.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                        { id: 144, type: 'image', category: 'baby', src: 'images/kiara/144.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                         { id: 145, type: 'image', category: 'baby', src: 'images/kiara/145.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                          { id: 146, type: 'image', category: 'baby', src: 'images/kiara/146.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                           { id: 147, type: 'image', category: 'baby', src: 'images/kiara/147.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                            { id: 148, type: 'image', category: 'baby', src: 'images/kiara/148.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                             { id: 149, type: 'image', category: 'baby', src: 'images/kiara/149.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                              { id: 150, type: 'image', category: 'baby', src: 'images/kiara/150.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                               { id: 151, type: 'image', category: 'baby', src: 'images/kiara/151.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                { id: 152, type: 'image', category: 'baby', src: 'images/kiara/152.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                 { id: 153, type: 'image', category: 'baby', src: 'images/kiara/153.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                  { id: 154, type: 'image', category: 'baby', src: 'images/kiara/154.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                   { id: 155, type: 'image', category: 'baby', src: 'images/kiara/155.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                    { id: 156, type: 'image', category: 'baby', src: 'images/kiara/156.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                     { id: 157, type: 'image', category: 'baby', src: 'images/kiara/157.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                      { id: 158, type: 'image', category: 'baby', src: 'images/kiara/158.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                       { id: 159, type: 'image', category: 'baby', src: 'images/kiara/159.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                        { id: 160, type: 'image', category: 'baby', src: 'images/kiara/160.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                         { id: 161, type: 'image', category: 'baby', src: 'images/kiara/161.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                          { id: 162, type: 'image', category: 'baby', src: 'images/kiara/162.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                           { id: 163, type: 'image', category: 'baby', src: 'images/kiara/163.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                            { id: 164, type: 'image', category: 'baby', src: 'images/kiara/164.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                             { id: 165, type: 'image', category: 'baby', src: 'images/kiara/165.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                              { id: 166, type: 'image', category: 'baby', src: 'images/kiara/166.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                               { id: 167, type: 'image', category: 'baby', src: 'images/kiara/167.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                { id: 168, type: 'image', category: 'baby', src: 'images/kiara/168.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                 { id: 169, type: 'image', category: 'baby', src: 'images/kiara/169.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                  { id: 170, type: 'image', category: 'baby', src: 'images/kiara/170.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                   { id: 171, type: 'image', category: 'baby', src: 'images/kiara/171.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                    { id: 172, type: 'image', category: 'baby', src: 'images/kiara/172.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                     { id: 173, type: 'image', category: 'baby', src: 'images/kiara/173.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                      { id: 174, type: 'image', category: 'baby', src: 'images/kiara/174.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                       { id: 175, type: 'image', category: 'baby', src: 'images/kiara/175.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                        { id: 176, type: 'image', category: 'baby', src: 'images/kiara/176.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                         { id: 177, type: 'image', category: 'baby', src: 'images/kiara/177.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                          { id: 178, type: 'image', category: 'baby', src: 'images/kiara/178.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                           { id: 179, type: 'image', category: 'baby', src: 'images/kiara/179.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                            { id: 180, type: 'image', category: 'baby', src: 'images/kiara/180.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                             { id: 181, type: 'image', category: 'baby', src: 'images/kiara/181.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                              { id: 182, type: 'image', category: 'baby', src: 'images/kiara/182.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                               { id: 183, type: 'image', category: 'baby', src: 'images/kiara/183.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                { id: 184, type: 'image', category: 'baby', src: 'images/kiara/184.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                 { id: 185, type: 'image', category: 'baby', src: 'images/kiara/185.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                  { id: 186, type: 'image', category: 'baby', src: 'images/kiara/186.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                   { id: 187, type: 'image', category: 'baby', src: 'images/kiara/187.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                    { id: 188, type: 'image', category: 'baby', src: 'images/kiara/188.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                     { id: 189, type: 'image', category: 'baby', src: 'images/kiara/189.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                      { id: 190, type: 'image', category: 'baby', src: 'images/kiara/190.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                       { id: 191, type: 'image', category: 'baby', src: 'images/kiara/191.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                        { id: 192, type: 'image', category: 'baby', src: 'images/kiara/192.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                         { id: 193, type: 'image', category: 'baby', src: 'images/kiara/193.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                           { id: 195, type: 'image', category: 'baby', src: 'images/kiara/195.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                            { id: 196, type: 'image', category: 'baby', src: 'images/kiara/196.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                             { id: 197, type: 'image', category: 'baby', src: 'images/kiara/197.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                              { id: 198, type: 'image', category: 'baby', src: 'images/kiara/198.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                               { id: 199, type: 'image', category: 'baby', src: 'images/kiara/199.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+                                                                                { id: 200, type: 'image', category: 'baby', src: 'images/kiara/200.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+
+ { id: 201, type: 'image', category: 'baby', src: 'images/kiara/201.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+  { id: 202, type: 'image', category: 'baby', src: 'images/kiara/202.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+   { id: 203, type: 'image', category: 'baby', src: 'images/kiara/203.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+    { id: 204, type: 'image', category: 'baby', src: 'images/kiara/204.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+     { id: 205, type: 'image', category: 'baby', src: 'images/kiara/205.jpeg', title: 'Play Time', desc: 'Playing with toys' },
+            
+            // Nanna memories
+            { id: 6, type: 'vedios', category: 'vedios', src: 'videos/baby/baby1.mp4', title: 'Park Walk with Nanna', desc: 'Beautiful walk in the park' },
+            { id: 7, type: 'video', category: 'nanna', src: 'https://assets.mixkit.co/videos/preview/mixkit-family-playing-with-a-dog-on-the-grass-3294-large.mp4', title: 'Playing with Dog', desc: 'Fun time with family pet' },
+            
+            // Family images
+            { id: 1, type: 'image', category: 'family', src: 'images/amma/amma1.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+             { id: 2, type: 'image', category: 'family', src: 'images/amma/amma2.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+              { id: 3, type: 'image', category: 'family', src: 'images/amma/amma3.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+               { id: 1, type: 'image', category: 'family', src: 'images/amma/amma4.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                { id: 1, type: 'image', category: 'family', src: 'images/amma/amma5.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                 { id: 1, type: 'image', category: 'family', src: 'images/amma/amma6.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                  { id: 1, type: 'image', category: 'family', src: 'images/amma/amma7.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                   { id: 1, type: 'image', category: 'family', src: 'images/amma/amma8.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                    { id: 1, type: 'image', category: 'family', src: 'images/amma/amma9.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                     { id: 1, type: 'image', category: 'family', src: 'images/amma/amma10.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                      { id: 1, type: 'image', category: 'family', src: 'images/amma/amma11.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                       { id: 1, type: 'image', category: 'family', src: 'images/amma/amma12.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                        { id: 1, type: 'image', category: 'family', src: 'images/amma/amma13.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                         { id: 1, type: 'image', category: 'family', src: 'images/amma/amma14.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                          { id: 1, type: 'image', category: 'family', src: 'images/amma/amma15.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                           { id: 1, type: 'image', category: 'family', src: 'images/amma/amma16.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                            { id: 1, type: 'image', category: 'family', src: 'images/amma/amma17.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                             { id: 1, type: 'image', category: 'family', src: 'images/amma/amma18.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                              { id: 1, type: 'image', category: 'family', src: 'images/amma/amma19.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                               { id: 1, type: 'image', category: 'family', src: 'images/amma/amma20.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                { id: 1, type: 'image', category: 'family', src: 'images/amma/amma21.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                 { id: 1, type: 'image', category: 'family', src: 'images/amma/amma22.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                  { id: 1, type: 'image', category: 'family', src: 'images/amma/amma23.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                   { id: 1, type: 'image', category: 'family', src: 'images/amma/amma24.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                    { id: 1, type: 'image', category: 'family', src: 'images/amma/amma25.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                     { id: 1, type: 'image', category: 'family', src: 'images/amma/amma26.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                      { id: 1, type: 'image', category: 'family', src: 'images/amma/amma27.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                       { id: 1, type: 'image', category: 'family', src: 'images/amma/amma28.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                        { id: 1, type: 'image', category: 'family', src: 'images/amma/amma29.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                         { id: 1, type: 'image', category: 'family', src: 'images/amma/amma30.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                          { id: 1, type: 'image', category: 'family', src: 'images/amma/amma31.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                           { id: 1, type: 'image', category: 'family', src: 'images/amma/amma32.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                            { id: 1, type: 'image', category: 'family', src: 'images/amma/amma33.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                             { id: 1, type: 'image', category: 'family', src: 'images/amma/amma34.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                              { id: 1, type: 'image', category: 'family', src: 'images/amma/amma35.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                               { id: 1, type: 'image', category: 'family', src: 'images/amma/amma36.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                { id: 1, type: 'image', category: 'family', src: 'images/amma/amma37.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                 { id: 1, type: 'image', category: 'family', src: 'images/amma/amma38.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                  { id: 1, type: 'image', category: 'family', src: 'images/amma/amma39.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                   { id: 1, type: 'image', category: 'family', src: 'images/amma/amma40.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                    { id: 1, type: 'image', category: 'family', src: 'images/amma/amma41.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                     { id: 1, type: 'image', category: 'family', src: 'images/amma/amma42.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                      { id: 1, type: 'image', category: 'family', src: 'images/amma/amma43.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                       { id: 1, type: 'image', category: 'family', src: 'images/amma/amma44.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                        { id: 1, type: 'image', category: 'family', src: 'images/amma/amma45.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                         { id: 1, type: 'image', category: 'family', src: 'images/amma/amma46.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                          { id: 1, type: 'image', category: 'family', src: 'images/amma/amma47.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                           { id: 1, type: 'image', category: 'family', src: 'images/amma/amma48.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                            { id: 1, type: 'image', category: 'family', src: 'images/amma/amma49.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                             { id: 1, type: 'image', category: 'family', src: 'images/amma/amma50.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+                                                              { id: 1, type: 'image', category: 'family', src: 'images/amma/amma51.jpeg', title: 'amma memories', desc: 'cute little princess with his mom' },
+ { id: 1, type: 'image', category: 'family', src: 'images/nana/nana smile.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+  { id: 1, type: 'image', category: 'family', src: 'images/nana/nana1.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+    { id: 1, type: 'image', category: 'family', src: 'images/nana/nana2.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+      { id: 1, type: 'image', category: 'family', src: 'images/nana/nana3.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+        { id: 1, type: 'image', category: 'family', src: 'images/nana/nana4.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+          { id: 1, type: 'image', category: 'family', src: 'images/nana/nana5.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+            { id: 1, type: 'image', category: 'family', src: 'images/nana/nana6.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+              { id: 1, type: 'image', category: 'family', src: 'images/nana/nana7.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+  { id: 1, type: 'image', category: 'family', src: 'images/nana/nana8.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+    { id: 1, type: 'image', category: 'family', src: 'images/nana/nana9.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+      { id: 1, type: 'image', category: 'family', src: 'images/nana/nana10.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+        { id: 1, type: 'image', category: 'family', src: 'images/nana/nana11.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+          { id: 1, type: 'image', category: 'family', src: 'images/nana/nana12.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+            { id: 1, type: 'image', category: 'family', src: 'images/nana/nana13.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+              { id: 1, type: 'image', category: 'family', src: 'images/nana/nana14.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                { id: 1, type: 'image', category: 'family', src: 'images/nana/nana15.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                  { id: 1, type: 'image', category: 'family', src: 'images/nana/nana16.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                    { id: 1, type: 'image', category: 'family', src: 'images/nana/nana17.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                      { id: 1, type: 'image', category: 'family', src: 'images/nana/nana18.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                        { id: 1, type: 'image', category: 'family', src: 'images/nana/nana19.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                          { id: 1, type: 'image', category: 'family', src: 'images/nana/nana20.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                            { id: 1, type: 'image', category: 'family', src: 'images/nana/nana21.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                              { id: 1, type: 'image', category: 'family', src: 'images/nana/nana22.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                { id: 1, type: 'image', category: 'family', src: 'images/nana/nana23.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                  { id: 1, type: 'image', category: 'family', src: 'images/nana/nana24.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                    { id: 1, type: 'image', category: 'family', src: 'images/nana/nana25.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                      { id: 1, type: 'image', category: 'family', src: 'images/nana/nana26.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                        { id: 1, type: 'image', category: 'family', src: 'images/nana/nana27.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                          { id: 1, type: 'image', category: 'family', src: 'images/nana/nana28.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                            { id: 1, type: 'image', category: 'family', src: 'images/nana/nana29.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                              { id: 1, type: 'image', category: 'family', src: 'images/nana/nana30.jpeg', title: 'nana memories', desc: 'cute little princess with his dad' },
+                                                { id: 1, type: 'image', category: 'family', src: 'images/banu nani/banu1.jpeg', title: 'grand parents', desc: 'memories with grandparents' },
+                                                                                                { id: 1, type: 'image', category: 'family', src: 'images/banu nani/banu2.jpeg', title: 'grand parents', desc: 'memories with grandparents' },
+
+
+
+
+        ];
+           
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            loadGalleryItems();
+            setupOriginalBanner();
+            setupEventListeners();
+            
+            // Hide loader after 1.5 seconds
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                // Show tap instructions for first-time visitors
+                if (!localStorage.getItem('tapInstructionsShown')) {
+                    setTimeout(() => {
+                        showTapInstructions();
+                        localStorage.setItem('tapInstructionsShown', 'true');
+                    }, 1000);
+                }
+            }, 1500);
+        });
+        
+        // Load gallery items
+        function loadGalleryItems() {
+            const galleryContainer = document.getElementById('gallery-container');
+            galleryContainer.innerHTML = '';
+            
+            galleryData.forEach((item, index) => {
+                const card = createGalleryCard(item, index);
+                galleryContainer.appendChild(card);
+                state.galleryItems.push({...item, index});
+            });
+            
+            state.filteredGalleryItems = [...state.galleryItems];
+        }
+        
+        // Create gallery card
+        function createGalleryCard(item, index) {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+            card.setAttribute('data-category', item.category);
+            card.setAttribute('data-index', index);
+            
+            let mediaContent = '';
+            if (item.type === 'image') {
+                mediaContent = `
+                    <img src="${item.src}" alt="${item.title}" class="photo-image" loading="lazy">
+                `;
+            } else {
+                mediaContent = `
+                    <div class="video-container">
+                        <video class="family-video" muted loop playsinline>
+                            <source src="${item.src}" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="mute-btn">
+                                <i class="fas fa-volume-mute"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            card.innerHTML = `
+                ${mediaContent}
+                <div class="media-overlay">
+                    <div class="media-category">${item.category}</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">${item.title}</h4>
+                    <p style="color: var(--soft-pink); font-size: 0.9rem;">${item.desc}</p>
+                    <div class="media-actions">
+                        <button class="media-heart-btn" data-id="${item.id}">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="download-btn" data-src="${item.src}" data-title="${item.title.replace(/\s+/g, '_')}.${item.type === 'image' ? 'jpg' : 'mp4'}">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add tap events
+            setupCardTapEvents(card, item, index);
+            
+            return card;
+        }
+        
+        // Setup card tap events
+        function setupCardTapEvents(card, item, index) {
+            const mediaElement = card.querySelector('.photo-image, .video-container');
+            let tapCount = 0;
+            let tapTimer = null;
+            
+            // Handle both click and touch events
+            const handleTap = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                tapCount++;
+                
+                if (tapCount === 1) {
+                    tapTimer = setTimeout(() => {
+                        // Single tap
+                        handleSingleTap(card, item, index);
+                        tapCount = 0;
+                    }, 300);
+                } else if (tapCount === 2) {
+                    clearTimeout(tapTimer);
+                    // Double tap
+                    handleDoubleTap(card, item, index);
+                    tapCount = 0;
+                }
+            };
+            
+            // Add event listeners for both mouse and touch
+            mediaElement.addEventListener('click', handleTap);
+            mediaElement.addEventListener('touchend', handleTap);
+            
+            // Heart button
+            const heartBtn = card.querySelector('.media-heart-btn');
+            heartBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                heartBtn.classList.toggle('liked');
+                if (heartBtn.classList.contains('liked')) {
+                    state.likedItems.add(item.id);
+                    showToast('Added to favorites! 💖');
+                } else {
+                    state.likedItems.delete(item.id);
+                }
+            });
+            
+            // Download button
+            const downloadBtn = card.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const src = downloadBtn.getAttribute('data-src');
+                const title = downloadBtn.getAttribute('data-title');
+                downloadMedia(src, title);
+            });
+            
+            // Video mute button
+            const muteBtn = card.querySelector('.mute-btn');
+            if (muteBtn) {
+                muteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const video = card.querySelector('.family-video');
+                    video.muted = !video.muted;
+                    muteBtn.innerHTML = video.muted ? 
+                        '<i class="fas fa-volume-mute"></i>' : 
+                        '<i class="fas fa-volume-up"></i>';
+                });
+            }
+        }
+        
+        // Handle single tap - Show in banner
+        function handleSingleTap(card, item, index) {
+            // Highlight the tapped card
+            document.querySelectorAll('.media-card').forEach(c => {
+                c.classList.remove('active');
+            });
+            card.classList.add('active');
+            
+            // Update banner with this item
+            updateBannerWithGalleryItem(item, index);
+            
+            // If slideshow is active, pause it temporarily
+            if (state.isSlideshowActive) {
+                pauseSlideshowTemporarily();
+            }
+            
+            // Scroll banner into view if on mobile
+            if (window.innerWidth < 768) {
+                document.querySelector('.banner-section').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
+        
+        // Handle double tap - Open fullscreen
+        function handleDoubleTap(card, item, index) {
+            // Show double tap animation
+            const rect = card.getBoundingClientRect();
+            const animation = document.createElement('div');
+            animation.className = 'double-tap-animation show';
+            animation.style.left = `${rect.left + rect.width/2 - 40}px`;
+            animation.style.top = `${rect.top + rect.height/2 - 40}px`;
+            document.body.appendChild(animation);
+            
+            setTimeout(() => {
+                animation.remove();
+            }, 600);
+            
+            // Open fullscreen
+            openFullscreen(item, index);
+        }
+        
+        // Update banner with gallery item
+        function updateBannerWithGalleryItem(item, index) {
+            const bannerContainer = document.getElementById('banner-container');
+            const bannerNav = document.getElementById('banner-nav');
+            const bannerInfo = document.getElementById('banner-info');
+            
+            // Clear banner
+            bannerContainer.innerHTML = '';
+            bannerNav.innerHTML = '';
+            
+            // Create banner slide
+            const slide = document.createElement('div');
+            slide.className = 'banner-slide active';
+            
+            if (item.type === 'image') {
+                slide.style.backgroundImage = `url('${item.src}')`;
+            } else {
+                slide.classList.add('banner-video');
+                const video = document.createElement('video');
+                video.src = item.src;
+                video.autoplay = true;
+                video.muted = true;
+                video.loop = true;
+                video.controls = true;
+                slide.appendChild(video);
+            }
+            
+            bannerContainer.appendChild(slide);
+            
+            // Create single dot
+            const dot = document.createElement('div');
+            dot.className = 'banner-dot active';
+            bannerNav.appendChild(dot);
+            
+            // Update banner info
+            bannerInfo.innerHTML = `
+                <div class="banner-category">${item.category}</div>
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+            `;
+            
+            // Update state
+            state.currentBannerMode = 'gallery';
+            state.currentGalleryIndex = index;
+            
+            // If slideshow was active, show indicator that it's paused
+            if (state.isSlideshowActive) {
+                const indicator = document.getElementById('slideshow-indicator');
+                indicator.innerHTML = '<i class="fas fa-pause"></i><span>Slideshow Paused</span>';
+                indicator.style.background = 'rgba(255, 193, 7, 0.8)';
+            }
+        }
+        
+        // Setup original banner
+        function setupOriginalBanner() {
+            const bannerContainer = document.getElementById('banner-container');
+            const bannerNav = document.getElementById('banner-nav');
+            const bannerInfo = document.getElementById('banner-info');
+            
+            // Clear banner
+            bannerContainer.innerHTML = '';
+            bannerNav.innerHTML = '';
+            
+            // Create banner slides
+            bannerImages.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'banner-slide';
+                slide.style.backgroundImage = `url('${image.src}')`;
+                slide.dataset.index = index;
+                
+                if (index === 0) {
+                    slide.classList.add('active');
+                }
+                
+                bannerContainer.appendChild(slide);
+                
+                // Create navigation dot
+                const dot = document.createElement('div');
+                dot.className = 'banner-dot';
+                dot.dataset.index = index;
+                
+                if (index === 0) {
+                    dot.classList.add('active');
+                }
+                
+                dot.addEventListener('click', () => {
+                    goToBannerSlide(index);
+                });
+                
+                bannerNav.appendChild(dot);
+            });
+            
+            // Set banner info for first slide
+            bannerInfo.innerHTML = `
+                <div class="banner-category">${bannerImages[0].category}</div>
+                <h3>${bannerImages[0].title}</h3>
+                <p>Cherished memories of Kiayara</p>
+            `;
+            
+            // Start auto-play
+            startBannerAutoPlay();
+        }
+        
+        // Banner auto-play
+        let bannerInterval;
+        let currentBannerIndex = 0;
+        
+        function startBannerAutoPlay() {
+            clearInterval(bannerInterval);
+            
+            // Only auto-play in original mode
+            if (state.currentBannerMode !== 'original') return;
+            
+            bannerInterval = setInterval(() => {
+                nextBannerSlide();
+            }, 5000); // 5 seconds for original banner
+        }
+        
+        function nextBannerSlide() {
+            const slides = document.querySelectorAll('.banner-slide');
+            if (slides.length === 0) return;
+            
+            currentBannerIndex = (currentBannerIndex + 1) % slides.length;
+            goToBannerSlide(currentBannerIndex);
+        }
+        
+        function goToBannerSlide(index) {
+            // Only in original mode
+            if (state.currentBannerMode !== 'original') return;
+            
+            currentBannerIndex = index;
+            
+            // Update slides
+            const slides = document.querySelectorAll('.banner-slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            
+            // Update dots
+            const dots = document.querySelectorAll('.banner-dot');
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            dots[index].classList.add('active');
+            
+            // Update banner info
+            const bannerInfo = document.getElementById('banner-info');
+            if (bannerImages[index]) {
+                bannerInfo.innerHTML = `
+                    <div class="banner-category">${bannerImages[index].category}</div>
+                    <h3>${bannerImages[index].title}</h3>
+                    <p>Cherished memories of Kiayara</p>
+                `;
+            }
+        }
+        
+        // Gallery slideshow in banner
+        let gallerySlideshowInterval;
+        
+        function startGallerySlideshow() {
+            clearInterval(gallerySlideshowInterval);
+            clearInterval(bannerInterval);
+            
+            state.isSlideshowActive = true;
+            state.currentBannerMode = 'slideshow';
+            
+            // Get current filtered items
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            filterGallery(activeFilter);
+            
+            // Start slideshow
+            gallerySlideshowInterval = setInterval(() => {
+                state.currentGalleryIndex = (state.currentGalleryIndex + 1) % state.filteredGalleryItems.length;
+                const item = state.filteredGalleryItems[state.currentGalleryIndex];
+                updateBannerWithGalleryItem(item, state.currentGalleryIndex);
+            }, 3000); // 3 seconds for gallery slideshow
+            
+            // Update UI
+            document.getElementById('slideshow-toggle').innerHTML = '<i class="fas fa-pause"></i><span>Stop Slideshow</span>';
+            document.getElementById('slideshow-indicator').style.display = 'flex';
+            document.getElementById('slideshow-indicator').style.background = 'rgba(194, 24, 91, 0.8)';
+            document.getElementById('slideshow-indicator').innerHTML = '<i class="fas fa-play"></i><span>Slideshow Running</span>';
+        }
+        
+        function stopGallerySlideshow() {
+            clearInterval(gallerySlideshowInterval);
+            
+            state.isSlideshowActive = false;
+            state.currentBannerMode = 'original';
+            
+            // Reset to original banner
+            setupOriginalBanner();
+            
+            // Update UI
+            document.getElementById('slideshow-toggle').innerHTML = '<i class="fas fa-play"></i><span>Start Slideshow</span>';
+            document.getElementById('slideshow-indicator').style.display = 'none';
+            
+            // Clear card highlights
+            document.querySelectorAll('.media-card').forEach(c => {
+                c.classList.remove('active');
+            });
+        }
+        
+        function pauseSlideshowTemporarily() {
+            clearInterval(gallerySlideshowInterval);
+            
+            // Change indicator to show paused
+            const indicator = document.getElementById('slideshow-indicator');
+            indicator.innerHTML = '<i class="fas fa-pause"></i><span>Slideshow Paused</span>';
+            indicator.style.background = 'rgba(255, 193, 7, 0.8)';
+            
+            // Resume after 10 seconds of inactivity
+            setTimeout(() => {
+                if (state.isSlideshowActive && state.currentBannerMode === 'slideshow') {
+                    startGallerySlideshow();
+                    indicator.innerHTML = '<i class="fas fa-play"></i><span>Slideshow Running</span>';
+                    indicator.style.background = 'rgba(194, 24, 91, 0.8)';
+                }
+            }, 10000);
+        }
+        
+        // Filter gallery
+        function filterGallery(filter) {
+            const cards = document.querySelectorAll('.media-card');
+            
+            // Update filtered items in state
+            if (filter === 'all') {
+                state.filteredGalleryItems = [...state.galleryItems];
+            } else {
+                state.filteredGalleryItems = state.galleryItems.filter(item => item.category === filter);
+            }
+            
+            // Update UI
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Reset gallery index
+            state.currentGalleryIndex = 0;
+            
+            // If slideshow is active, restart with filtered items
+            if (state.isSlideshowActive) {
+                startGallerySlideshow();
+            }
+        }
+        
+        // Fullscreen view
+        function openFullscreen(item, index) {
+            state.currentFullscreenIndex = index;
+            
+            const overlay = document.getElementById('fullscreen-overlay');
+            const content = document.getElementById('fullscreen-content');
+            
+            // Clear previous content
+            content.innerHTML = '';
+            
+            // Create content based on media type
+            if (item.type === 'image') {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.title;
+                img.className = 'fullscreen-img';
+                content.appendChild(img);
+            } else {
+                const video = document.createElement('video');
+                video.src = item.src;
+                video.controls = true;
+                video.autoplay = true;
+                video.className = 'fullscreen-video';
+                content.appendChild(video);
+            }
+            
+            // Update download button
+            const downloadBtn = document.getElementById('fullscreen-download');
+            downloadBtn.setAttribute('data-src', item.src);
+            downloadBtn.setAttribute('data-title', `${item.title.replace(/\s+/g, '_')}.${item.type === 'image' ? 'jpg' : 'mp4'}`);
+            
+            // Show overlay
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeFullscreen() {
+            const overlay = document.getElementById('fullscreen-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Pause any playing video
+            const video = overlay.querySelector('video');
+            if (video) {
+                video.pause();
+            }
+        }
+        
+        // Navigate in fullscreen
+        function navigateFullscreen(direction) {
+            const items = state.filteredGalleryItems;
+            if (items.length === 0) return;
+            
+            state.currentFullscreenIndex = (state.currentFullscreenIndex + direction + items.length) % items.length;
+            const item = items[state.currentFullscreenIndex];
+            
+            openFullscreen(item, state.currentFullscreenIndex);
+        }
+        
+        // Download media
+        function downloadMedia(src, title) {
+            const link = document.createElement('a');
+            link.href = src;
+            link.download = title;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast(`Downloading: ${title}`);
+        }
+        
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Show tap instructions
+        function showTapInstructions() {
+            const instructions = document.getElementById('tap-instructions');
+            instructions.classList.add('show');
+            
+            setTimeout(() => {
+                instructions.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Slideshow toggle
+            document.getElementById('slideshow-toggle').addEventListener('click', () => {
+                if (state.isSlideshowActive) {
+                    stopGallerySlideshow();
+                } else {
+                    startGallerySlideshow();
+                }
+            });
+            
+            // Gallery filters
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    filterGallery(filter);
+                });
+            });
+            
+            // Fullscreen controls
+            document.getElementById('fullscreen-close').addEventListener('click', closeFullscreen);
+            document.getElementById('prev-btn').addEventListener('click', () => navigateFullscreen(-1));
+            document.getElementById('next-btn').addEventListener('click', () => navigateFullscreen(1));
+            document.getElementById('fullscreen-download').addEventListener('click', function() {
+                const src = this.getAttribute('data-src');
+                const title = this.getAttribute('data-title');
+                if (src) downloadMedia(src, title);
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const overlay = document.getElementById('fullscreen-overlay');
+                
+                if (overlay.classList.contains('active')) {
+                    switch (e.key) {
+                        case 'Escape': closeFullscreen(); break;
+                        case 'ArrowLeft': navigateFullscreen(-1); break;
+                        case 'ArrowRight': navigateFullscreen(1); break;
+                    }
+                } else {
+                    switch (e.key) {
+                        case 'ArrowLeft': 
+                            if (state.currentBannerMode === 'original') {
+                                currentBannerIndex = (currentBannerIndex - 1 + bannerImages.length) % bannerImages.length;
+                                goToBannerSlide(currentBannerIndex);
+                            }
+                            break;
+                        case 'ArrowRight': 
+                            if (state.currentBannerMode === 'original') {
+                                nextBannerSlide();
+                            }
+                            break;
+                        case ' ': 
+                            // Space to toggle slideshow
+                            const event = new Event('click');
+                            document.getElementById('slideshow-toggle').dispatchEvent(event);
+                            break;
+                    }
+                }
+            });
+            
+            // Show tap instructions on hover
+            document.querySelectorAll('.media-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    if (!state.isSlideshowActive) {
+                        showTapInstructions();
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

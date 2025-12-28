@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiara's Magic Universe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+        :root{
+            --dark:#0a0414;--pink:#ff2d75;--light-pink:#ff4d8d;--violet:#c218ff;
+            --purple:#9d4edd;--cyan:#00fff7;--gold:#ffd700;--glass:rgba(15,6,23,0.9)
+        }
+        body{background:var(--dark);color:#fff;overflow-x:hidden;position:relative}
+        .cosmic-bg{
+            position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;
+            background:radial-gradient(circle at 20% 30%,rgba(255,45,117,.2) 0,transparent 40%),
+                radial-gradient(circle at 80% 70%,rgba(157,78,221,.15) 0,transparent 40%),
+                linear-gradient(180deg,#050108 0,#0f0617 100%);
+            animation:bgFlow 20s infinite alternate
+        }
+        @keyframes bgFlow{
+            0%{transform:scale(1) rotate(0);filter:hue-rotate(0)}
+            100%{transform:scale(1.02) rotate(.5deg);filter:hue-rotate(10deg)}
+        }
+        .hearts-bg{position:fixed;width:100%;height:100%;z-index:-2;pointer-events:none}
+        .heart-float{
+            position:absolute;color:rgba(255,45,117,0.3);font-size:24px;
+            animation:floatHeart 20s linear infinite
+        }
+        @keyframes floatHeart{
+            0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+            10%{opacity:0.6}
+            90%{opacity:0.6}
+            100%{transform:translateY(-100px) rotate(360deg);opacity:0}
+        }
+        .navbar{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:1rem 2rem;background:rgba(15,6,23,.85);
+            backdrop-filter:blur(20px);position:fixed;top:0;width:100%;z-index:1000;
+            border-bottom:1px solid rgba(255,45,117,.3);box-shadow:0 10px 30px rgba(0,0,0,.5);
+            animation:slideDown .8s .5s both
+        }
+        @keyframes slideDown{0%{transform:translateY(-100px);opacity:0}100%{transform:translateY(0);opacity:1}}
+        .logo{display:flex;align-items:center;gap:10px;font-size:1.8rem;font-weight:800;
+            background:linear-gradient(135deg,var(--light-pink),var(--violet),var(--cyan));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .logo i{font-size:2rem;animation:spin 10s linear infinite}
+        @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+        .nav-links{display:flex;gap:1rem;list-style:none;align-items:center}
+        .nav-links a{
+            color:#fff;text-decoration:none;padding:.7rem 1.5rem;border-radius:50px;
+            background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+            transition:all .3s ease;display:flex;align-items:center;gap:8px;font-size:.95rem
+        }
+        .nav-links a:hover{
+            transform:translateY(-3px);background:linear-gradient(135deg,var(--pink),var(--violet));
+            box-shadow:0 10px 20px rgba(255,45,117,.3)
+        }
+        .nav-links a.active{background:linear-gradient(135deg,var(--pink),var(--violet));
+            animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(255,45,117,.5)}50%{box-shadow:0 0 30px rgba(255,45,117,.7)}}
+        .logout-btn{
+            margin-left:1rem;padding:.8rem;background:linear-gradient(135deg,#ff4444,#ff2d75);
+            border-radius:50%;width:45px;height:45px;display:flex;align-items:center;
+            justify-content:center;cursor:pointer;transition:all .3s ease;border:none;
+            color:white;font-size:1.2rem
+        }
+        .logout-btn:hover{
+            transform:rotate(180deg) scale(1.1);background:linear-gradient(135deg,#ff2d75,#ff4444);
+            box-shadow:0 0 25px rgba(255,68,68,0.6)
+        }
+        .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;color:var(--light-pink)}
+        .hero{
+            min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+            align-items:center;padding:5rem 1rem;text-align:center;position:relative
+        }
+        .portal{
+            position:absolute;width:min(80vw,500px);height:min(80vw,500px);border-radius:50%;
+            background:radial-gradient(circle,rgba(255,45,117,.1) 0,transparent 50%);
+            filter:blur(40px);animation:pulsePortal 6s infinite;z-index:-1
+        }
+        @keyframes pulsePortal{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.05);opacity:.9}}
+        .profile-container{
+            width:min(70vw,300px);height:min(70vw,300px);margin:2rem auto;position:relative
+        }
+        .profile-frame{
+            width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;z-index:2;
+            border:4px solid transparent;background:linear-gradient(45deg,var(--pink),var(--violet),var(--cyan)) border-box;
+            animation:borderRotate 5s linear infinite,float 6s ease-in-out infinite;
+            box-shadow:0 0 50px rgba(255,45,117,.5);cursor:pointer;transition:all .4s ease
+        }
+        @keyframes borderRotate{0%{background-position:0 50%}100%{background-position:200% 50%}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        .profile-frame:hover{transform:scale(1.1);box-shadow:0 0 80px rgba(255,45,117,.7)}
+        .profile-img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+        .profile-frame:hover .profile-img{transform:scale(1.15)}
+        .orbit-ring{
+            position:absolute;top:0;left:0;width:100%;height:100%;border:2px dashed rgba(255,45,117,.3);
+            border-radius:50%;animation:orbit 20s linear infinite
+        }
+        @keyframes orbit{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+        .orbit-item{
+            position:absolute;width:40px;height:40px;background:linear-gradient(135deg,var(--pink),var(--violet));
+            border-radius:50%;top:50%;left:-20px;transform-origin:calc(min(70vw,300px)/2 + 10px);
+            display:flex;align-items:center;justify-content:center;color:#fff;
+            box-shadow:0 0 15px currentColor;transition:transform 0.3s ease
+        }
+        .orbit-item:hover{transform:scale(1.3)}
+        .hero-title{
+            font-size:clamp(2.5rem, 6vw, 4rem);margin:1rem 0;background:linear-gradient(135deg,var(--light-pink),var(--cyan),var(--violet));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;
+            animation:gradientShift 5s infinite;font-weight:800;letter-spacing:1px
+        }
+        @keyframes gradientShift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+        .hero-subtitle{
+            font-size:clamp(1rem, 3vw, 1.3rem);color:rgba(255,255,255,.9);max-width:800px;
+            line-height:1.6;margin:2rem auto;padding:1.5rem;background:rgba(255,255,255,.05);
+            backdrop-filter:blur(10px);border-radius:20px;border:1px solid rgba(255,255,255,.1);
+            animation:float 8s ease-in-out infinite
+        }
+        .magic-btn{
+            background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff;padding:1.2rem 3rem;
+            border-radius:50px;text-decoration:none;font-weight:600;font-size:1.2rem;
+            letter-spacing:1px;border:none;cursor:pointer;animation:btnFloat 3s infinite;
+            box-shadow:0 10px 30px rgba(255,45,117,.4);display:flex;align-items:center;
+            gap:12px;margin-top:2rem;transition:all .3s ease
+        }
+        @keyframes btnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        .magic-btn:hover{transform:translateY(-5px) scale(1.05);letter-spacing:1.5px;
+            box-shadow:0 15px 40px rgba(255,45,117,.6)}
+        .back-btn{
+            position:fixed;bottom:20px;left:20px;width:60px;height:60px;background:linear-gradient(135deg,var(--pink),var(--violet));
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            color:#fff;font-size:1.5rem;cursor:pointer;z-index:100;box-shadow:0 5px 20px rgba(255,45,117,.3);
+            transition:all .3s ease;border:2px solid rgba(255,255,255,.2)
+        }
+        .back-btn:hover{transform:scale(1.2) rotate(-180deg)}
+        .footer{
+            text-align:center;padding:3rem 1rem;background:linear-gradient(to top,rgba(15,6,23,.95),transparent);
+            margin-top:3rem;border-top:1px solid rgba(255,45,117,.2)
+        }
+        .footer p{color:rgba(255,255,255,.8);margin:.5rem 0;font-size:.9rem}
+        .heart{color:var(--pink);animation:heartbeat 1s infinite;display:inline-block;margin:0 5px}
+        @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+        @media (max-width: 768px){
+            .navbar{padding:.8rem 1rem}
+            .nav-links{
+                display:none;position:absolute;top:100%;left:0;width:100%;
+                background:rgba(15,6,23,.98);flex-direction:column;padding:1rem;
+                border-radius:0 0 20px 20px;align-items:center
+            }
+            .nav-links.active{display:flex}
+            .menu-toggle{display:block}
+            .nav-links a{padding:1rem;justify-content:center;margin-bottom:5px;width:90%}
+            .logout-btn{margin:10px auto;width:50px;height:50px}
+            .hero{padding-top:7rem}
+            .profile-container{width:250px;height:250px;margin:1.5rem auto}
+            .back-btn{width:50px;height:50px;font-size:1.3rem;bottom:15px;left:15px}
+        }
+        @media (max-width: 480px){
+            .hero-title{font-size:2.2rem}
+            .profile-container{width:200px;height:200px}
+            .magic-btn{padding:1rem 2.5rem;font-size:1.1rem}
+            .hero-subtitle{padding:1rem;margin:1.5rem .5rem}
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="cosmic-bg"></div>
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="portal"></div>
+
+    <!-- Back Button -->
+    <div class="back-btn" id="backBtn">
+        <i class="fas fa-magic"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-sparkles"></i>
+            <span>Kiara's Gallery</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-star"></i> About</a></li>
+           
+            <li><a href="special.html"><i class="fas fa-gem"></i> Special</a></li>
+           
+            <li><a href="family.html"><i class="fas fa-heart"></i> Family</a></li>
+            <li>
+                <button class="logout-btn" id="logoutBtn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="profile-container">
+            <div class="orbit-ring">
+                <div class="orbit-item" style="transform: rotate(0deg) translate(150px)">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="orbit-item" style="transform: rotate(60deg) translate(150px)">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="orbit-item" style="transform: rotate(120deg) translate(150px)">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <div class="orbit-item" style="transform: rotate(180deg) translate(150px)">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="orbit-item" style="transform: rotate(240deg) translate(150px)">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="orbit-item" style="transform: rotate(300deg) translate(150px)">
+                    <i class="fas fa-sun"></i>
+                </div>
+            </div>
+            <div class="profile-frame">
+                <img src="images/kutty 6.jpeg" alt="Princess Kiara" class="profile-img">
+            </div>
+        </div>
+        
+        <h1 class="hero-title">PRINCESS KIAYARA</h1>
+        
+        <p class="hero-subtitle">
+            Welcome to the magical world of Princess Kiayara. Every moment is a treasure, 
+            every memory a precious gem in the crown of our hearts. Explore her enchanting 
+            journey through this digital wonderland filled with love, laughter, and magic.
+        </p>
+        
+        <button class="magic-btn" id="exploreBtn">
+            <span>Explore My Gallery</span>
+            <i class="fas fa-wand-magic-sparkles"></i>
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Crafted with <span class="heart"><i class="fas fa-heart"></i></span> for Princess Kiayara</p>
+        <p>© 2023 Kiara's Magical Universe. All rights reserved.</p>
+        <p style="margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.6)">
+            <i class="fas fa-sparkles"></i> Made with love & magic <i class="fas fa-sparkles"></i>
+        </p>
+    </footer>
+
+    <script>
+        // Initialize
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const backBtn = document.getElementById('backBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const heartsBg = document.getElementById('heartsBg');
+
+        // Create floating hearts
+        function createHearts() {
+            for(let i=0;i<25;i++){
+                const heart = document.createElement('div');
+                heart.className='heart-float';
+                heart.innerHTML='<i class="fas fa-heart"></i>';
+                heart.style.cssText=`left:${Math.random()*100}%;
+                    animation-delay:${Math.random()*20}s;
+                    font-size:${Math.random()*20+10}px;
+                    color:rgba(255,45,117,${Math.random()*0.3+0.1})`;
+                heartsBg.appendChild(heart);
+            }
+        }
+
+        // Toggle menu
+        menuToggle.addEventListener('click',()=>{
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML=navLinks.classList.contains('active')?
+                '<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+        });
+
+        // Back button action
+        backBtn.addEventListener('click',()=>{
+            createSparkles(backBtn);
+            setTimeout(()=>window.location.href='welcome.html',800);
+        });
+
+        // Explore button action
+        exploreBtn.addEventListener('click',()=>{
+            createSparkles(exploreBtn,15);
+            exploreBtn.innerHTML='<i class="fas fa-sparkles"></i> <span>showing gallery !</span>';
+            setTimeout(()=>window.location.href='gallery.html',1200);
+        });
+
+        // Logout button action
+        logoutBtn.addEventListener('click',()=>{
+            // Create special logout sparkles
+            const rect = logoutBtn.getBoundingClientRect();
+            for(let i=0;i<20;i++){
+                const spark = document.createElement('div');
+                spark.style.cssText=`position:fixed;width:8px;height:8px;
+                    background:radial-gradient(circle,#ff4444,#ff2d75);border-radius:50%;
+                    z-index:1000;left:${rect.left+rect.width/2}px;
+                    top:${rect.top+rect.height/2}px;pointer-events:none`;
+                document.body.appendChild(spark);
+                const angle = Math.random()*Math.PI*2;
+                const dist = Math.random()*80+40;
+                spark.animate([
+                    {transform:'translate(0,0) scale(1)',opacity:1},
+                    {transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px) scale(0)`,opacity:0}
+                ],{duration:1000,easing:'ease-out'});
+                setTimeout(()=>spark.remove(),1000);
+            }
+            
+            // Change button appearance
+            logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            logoutBtn.style.background = 'linear-gradient(135deg, #ff2d75, #9d4edd)';
+            
+            setTimeout(()=>{
+                window.location.href = 'welcome.html';
+            },1500);
+        });
+
+        // Sparkle effect
+        function createSparkles(element,count=10){
+            const rect=element.getBoundingClientRect();
+            for(let i=0;i<count;i++){
+                const spark=document.createElement('div');
+                spark.style.cssText=`position:fixed;width:8px;height:8px;
+                    background:radial-gradient(circle,#ffd700,#ff4d8d);border-radius:50%;
+                    z-index:1000;left:${rect.left+rect.width/2}px;
+                    top:${rect.top+rect.height/2}px;pointer-events:none`;
+                document.body.appendChild(spark);
+                const angle=Math.random()*Math.PI*2;
+                const dist=Math.random()*60+30;
+                spark.animate([
+                    {transform:'translate(0,0) scale(1)',opacity:1},
+                    {transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px) scale(0)`,opacity:0}
+                ],{duration:800,easing:'ease-out'});
+                setTimeout(()=>spark.remove(),800);
+            }
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link=>{
+            link.addEventListener('click',()=>{
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML='<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll',()=>{
+            document.querySelector('.navbar').style.background=
+                window.scrollY>50?'rgba(15,6,23,0.95)':'rgba(15,6,23,0.85)';
+        });
+
+        // Initialize floating hearts
+        createHearts();
+        
+        // Add hover effect to orbit items
+        document.querySelectorAll('.orbit-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform += ' scale(1.3)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = item.style.transform.replace(' scale(1.3)', '');
+            });
+        });
+    </script>
+</body>
+</html>

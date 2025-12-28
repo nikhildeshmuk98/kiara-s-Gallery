@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Princess Kiara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --dark: #0a0414;
+            --dark-pink: #1a0a1a;
+            --pink: #ff2d75;
+            --light-pink: #ff4d8d;
+            --soft-pink: #ff7eb3;
+            --violet: #c218ff;
+            --purple: #9d4edd;
+            --cyan: #00fff7;
+            --gold: #ffd700;
+            --glass: rgba(26, 10, 26, 0.7);
+            --glass-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background: var(--dark);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* Cosmic Background with improved animation */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 45, 117, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(157, 78, 221, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 126, 179, 0.1) 0%, transparent 40%),
+                linear-gradient(180deg, #050108 0%, #1a001a 50%, #0a000a 100%);
+            animation: cosmicFlow 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes cosmicFlow {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.05) rotate(1deg); }
+        }
+
+        /* Magical scrolling particles */
+        .scroll-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
+            animation: particleFloat 15s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Hearts */
+        .hearts-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 45, 117, 0.2);
+            font-size: 20px;
+            animation: floatHeart 25s linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--pink), var(--violet));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(255, 45, 117, 0.4);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            transform: scale(1.15) rotate(-180deg);
+            box-shadow: 0 12px 35px rgba(255, 45, 117, 0.7);
+            background: linear-gradient(135deg, var(--violet), var(--pink));
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, var(--pink), var(--violet), var(--cyan));
+            z-index: 9999;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 20px rgba(255, 45, 117, 0.7);
+        }
+
+        /* Header */
+        .about-header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-title {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--light-pink), var(--cyan), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .about-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Profile Section */
+        .profile-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-image-container {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 6px solid transparent;
+            background: linear-gradient(45deg, var(--pink), var(--violet), var(--cyan)) border-box;
+            box-shadow: 
+                0 0 60px rgba(255, 45, 117, 0.5),
+                0 0 120px rgba(157, 78, 221, 0.3),
+                inset 0 0 40px rgba(255, 255, 255, 0.1);
+            animation: borderRotate 8s linear infinite, float 6s ease-in-out infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .profile-image-container:hover .profile-img {
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Profile Info */
+        .profile-info {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid var(--glass-light);
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            z-index: -1;
+        }
+
+        .profile-name {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--soft-pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .profile-bio {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced Personal Details */
+        .personal-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .detail-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--pink);
+            box-shadow: 0 10px 20px rgba(255, 45, 117, 0.2);
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--pink), var(--violet));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .detail-content h4 {
+            color: var(--light-pink);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .detail-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        /* Enhanced Highlights */
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(255, 45, 117, 0.15), rgba(157, 78, 221, 0.1));
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .highlight:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 45, 117, 0.25), rgba(157, 78, 221, 0.2));
+            box-shadow: 0 10px 20px rgba(255, 45, 117, 0.2);
+        }
+
+        .highlight i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Family Section */
+        .family-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--light-pink), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
+
+        /* Family Cards */
+        .family-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .family-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid var(--glass-light);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .family-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 25px 50px rgba(255, 45, 117, 0.3),
+                0 0 80px rgba(157, 78, 221, 0.2);
+            border-color: var(--pink);
+        }
+
+        .family-card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .family-card:hover .family-card-img {
+            transform: scale(1.1);
+        }
+
+        .family-card-content {
+            padding: 25px;
+            position: relative;
+        }
+
+        .family-card-relation {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink), var(--violet));
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .family-card-name {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .family-card-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .family-card-icon {
+            position: absolute;
+            top: -25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Show More Button */
+        .show-more-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, var(--pink), var(--violet));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 45, 117, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .show-more-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 45, 117, 0.6);
+            background: linear-gradient(135deg, var(--violet), var(--pink));
+        }
+
+        .show-more-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .show-more-btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .show-more-btn:hover i {
+            transform: rotate(90deg);
+        }
+
+        /* More Family Members Section */
+        .more-family-section {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .more-family-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Fullscreen Card View */
+        .fullscreen-card {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 4, 20, 0.95);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-out;
+            backdrop-filter: blur(20px);
+        }
+
+        .fullscreen-card.active {
+            display: flex;
+        }
+
+        .fullscreen-card-content {
+            background: linear-gradient(145deg, rgba(26, 10, 26, 0.9), rgba(10, 4, 20, 0.9));
+            max-width: 900px;
+            width: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--glass-light);
+            box-shadow: 
+                0 30px 80px rgba(255, 45, 117, 0.4),
+                0 0 100px rgba(157, 78, 221, 0.3);
+            animation: scaleUp 0.5s ease-out;
+            position: relative;
+        }
+
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-fullscreen {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-fullscreen:hover {
+            background: var(--pink);
+            transform: rotate(90deg);
+        }
+
+        .fullscreen-card-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .fullscreen-card-info {
+            padding: 40px;
+        }
+
+        .fullscreen-card-relation {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink), var(--violet));
+            color: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .fullscreen-card-name {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--soft-pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .fullscreen-card-desc {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .fullscreen-card-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .fullscreen-card-detail {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fullscreen-card-detail h4 {
+            color: var(--light-pink);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .fullscreen-card-detail p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        /* Mixed Media Gallery */
+        .gallery-section {
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-gallery {
+            display: flex;
+            gap: 25px;
+            animation: scrollGallery 40s linear infinite;
+            padding: 20px;
+        }
+
+        .media-gallery:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollGallery {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-275px * 9 - 25px * 8));
+            }
+        }
+
+        .media-item {
+            min-width: 275px;
+            height: 275px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, var(--pink), var(--violet)) border-box;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .media-item:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 
+                0 20px 40px rgba(255, 45, 117, 0.4),
+                0 0 60px rgba(157, 78, 221, 0.3);
+        }
+
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .media-item:hover img,
+        .media-item:hover video {
+            transform: scale(1.15);
+        }
+
+        .video-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--cyan);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-tag i {
+            color: var(--cyan);
+        }
+
+        .media-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .media-item:hover .media-overlay {
+            transform: translateY(0);
+        }
+
+        .media-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .media-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 45, 117, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .media-item:hover .play-btn {
+            opacity: 1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to top, rgba(10, 4, 20, 0.95), transparent);
+            border-top: 1px solid rgba(255, 45, 117, 0.2);
+            margin-top: 60px;
+        }
+
+        .footer-heart {
+            color: var(--pink);
+            animation: heartbeat 1.5s infinite;
+            margin: 0 5px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Magical Scrolling Effects */
+        @keyframes magicalAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .magical-appear {
+            animation: magicalAppear 0.8s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .family-cards {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .profile-image-container {
+                margin: 0 auto;
+            }
+            
+            .personal-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .highlights {
+                justify-content: center;
+            }
+            
+            .family-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .fullscreen-card-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .media-item {
+                min-width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 3rem;
+            }
+            
+            .profile-image-container {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .profile-name {
+                font-size: 2.5rem;
+            }
+            
+            .profile-info {
+                padding: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .family-cards {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .fullscreen-card-name {
+                font-size: 2.5rem;
+            }
+            
+            .fullscreen-card-info {
+                padding: 30px;
+            }
+            
+            .media-item {
+                min-width: 200px;
+                height: 200px;
+            }
+            
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-title {
+                font-size: 2.5rem;
+            }
+            
+            .profile-image-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .personal-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .detail-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .family-card-name {
+                font-size: 1.6rem;
+            }
+            
+            .fullscreen-card-name {
+                font-size: 2rem;
+            }
+            
+            .media-item {
+                min-width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="cosmic-bg"></div>
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="scroll-particles" id="scrollParticles"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back Button -->
+    <div class="back-btn" id="backBtn">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
+    <!-- Main Content -->
+    <main class="about-container">
+        <!-- Header -->
+        <header class="about-header">
+            <h1 class="about-title">About Our Princess</h1>
+            <p class="about-subtitle">Discover the magical journey of our little princess who lights up our world</p>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="profile-section magical-appear">
+            <div class="profile-image-container">
+                <img src="images/krish6.jpeg" alt="Princess Kiayara" class="profile-img">
+            </div>
+            
+            <div class="profile-info">
+                <div class="profile-name">Guru Kiayara</div>
+                
+                <div class="profile-bio">
+                    Our little princess with a big heart who spreads joy and magic wherever she goes. 
+                    Every moment with her is a precious memory that we cherish forever. Born with a 
+                    smile that can light up the darkest room, she brings happiness to everyone around her.
+                </div>
+                
+                <!-- Personal Details -->
+                <div class="personal-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Full Name</h4>
+                            <p>Guru Kiayara Jayampu</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-male"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Father Name</h4>
+                            <p>Guru Teja Jayampu</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Mother Name</h4>
+                            <p>Vasudha Jayampu</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-calendar-star"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Special Day</h4>
+                            <p>Kutty's First Step - Jan 5</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>School</h4>
+                            <p>Sree VidyaVikas EM School</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Loves</h4>
+                            <p>Dancing, Cartoons, Sparkly Things</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Nickname</h4>
+                            <p>Kutty</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Favorite Treat</h4>
+                            <p>Chocolate Ice Cream</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlights">
+                    <div class="highlight">
+                        <i class="fas fa-heart"></i>
+                        <span>Everyday brings new cute moments</span>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-star"></i>
+                        <span>Our precious little angel</span>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-gem"></i>
+                        <span>Memories that last forever</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Family Section -->
+        <section class="family-section magical-appear">
+            <h2 class="section-title">Our Royal Family</h2>
+            <p class="section-subtitle">Meet the wonderful family members who adore and cherish our little princess</p>
+            
+            <div class="family-cards">
+                <!-- Father Card -->
+                <div class="family-card" data-member="father">
+                    <div class="family-card-icon">
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <img src="images/nana/nana1.jpeg" 
+                         alt="Father" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">Father</div>
+                        <h3 class="family-card-name">Guru Teja</h3>
+                        <p class="family-card-desc">Proud father who loves his princess more than anything in the world.</p>
+                    </div>
+                </div>
+                
+                <!-- Mother Card -->
+                <div class="family-card" data-member="mother">
+                    <div class="family-card-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <img src="images/amma/amma1.jpeg" 
+                         alt="Mother" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">Mother</div>
+                        <h3 class="family-card-name">Vasudha</h3>
+                        <p class="family-card-desc">Loving mother who is her princess's biggest supporter and best friend.</p>
+                    </div>
+                </div>
+                
+                <!-- Grandfather Card -->
+                <div class="family-card" data-member="grandfather">
+                    <div class="family-card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <img src="images/tata/5.jpeg" 
+                         alt="Grandfather" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">Grandfather</div>
+                        <h3 class="family-card-name">Jayampu BuchiBabu.</h3>
+                        <p class="family-card-desc">Wise grandfather who tells the best stories and gives the warmest hugs.</p>
+                    </div>
+                </div>
+                
+                <!-- Grandmother Card -->
+                <div class="family-card" data-member="grandmother">
+                    <div class="family-card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <img src="images/banu nani/banu1.jpeg" 
+                         alt="Grandmother" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">Grandmother</div>
+                        <h3 class="family-card-name">Banu Jayampu</h3>
+                        <p class="family-card-desc">Caring grandmother who makes the tastiest treats and gives endless love.</p>
+                    </div>
+                </div>
+                
+                <!-- Babai (Uncle) Card -->
+                <div class="family-card" data-member="babai">
+                    <div class="family-card-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <img src="images/babai/harsha1.jpeg" 
+                         alt="Babai" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">Babai </div>
+                        <h3 class="family-card-name">Harsha Jayampu</h3>
+                        <p class="family-card-desc">Fun-loving babai who always knows how to make his niece laugh and play.</p>
+                    </div>
+                </div>
+              
+            
+            <button class="show-more-btn" id="showMoreBtn">
+                Show More Family Members <i class="fas fa-arrow-right"></i>
+            </button>
+        </section>
+
+        <!-- More Family Members Section -->
+        <section class="more-family-section magical-appear" id="moreFamilySection">
+            <h2 class="section-title">Extended Royal Family</h2>
+            <p class="section-subtitle">More wonderful family members who adore our princess</p>
+            
+            <div class="more-family-cards">
+                <!-- Additional family members would go here -->
+                <div class="family-card" data-member="grandfather">
+                    <div class="family-card-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <img src="images/seenu tataya/10.jpeg" 
+                         alt="Cousin" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">grandfather</div>
+                        <h3 class="family-card-name">Sreenivasulu Muthukuru</h3>
+                        <p class="family-card-desc">Wise grandfather who tells the best stories and gives the warmest hugs.</p>
+                    </div>
+                </div>
+                
+                <div class="family-card" data-member="grandmother">
+                    <div class="family-card-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <img src="images/seenu tataya/12.jpeg" 
+                         alt="Cousin" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">grandmother</div>
+                        <h3 class="family-card-name">Kavitha Muthukuru</h3>
+                        <p class="family-card-desc">Caring grandmother who makes the tastiest treats and gives endless love.</p>
+                    </div>
+                </div>
+                
+                <div class="family-card" data-member="mamaya">
+                    <div class="family-card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <img src="images/mama 1.jpeg" 
+                         alt="Great Grandmother" class="family-card-img">
+                    <div class="family-card-content">
+                        <div class="family-card-relation">mamaya</div>
+                        <h3 class="family-card-name">Lokesh Muthukuru</h3>
+                        <p class="family-card-desc">Fun-loving babai who always knows how to make his niece laugh and play.</p>
+                    </div>
+                </div>
+                
+               
+        </section>
+
+        <!-- Fullscreen Card View -->
+        <div class="fullscreen-card" id="fullscreenCard">
+            <div class="fullscreen-card-content">
+                <div class="close-fullscreen" id="closeFullscreen">
+                    <i class="fas fa-times"></i>
+                </div>
+                <img src="" alt="Family Member" class="fullscreen-card-img" id="fullscreenImg">
+                <div class="fullscreen-card-info">
+                    <div class="fullscreen-card-relation" id="fullscreenRelation">Father</div>
+                    <h2 class="fullscreen-card-name" id="fullscreenName">Guru Teja</h2>
+                    <p class="fullscreen-card-desc" id="fullscreenDesc">Proud father who loves his princess more than anything in the world.</p>
+                    
+                    <div class="fullscreen-card-details">
+                        <div class="fullscreen-card-detail">
+                            <h4>Role in Family</h4>
+                            <p id="detailRole">Protector and Provider</p>
+                        </div>
+                        <div class="fullscreen-card-detail">
+                            <h4>Favorite Activity</h4>
+                            <p id="detailActivity">Playing with his princess</p>
+                        </div>
+                        <div class="fullscreen-card-detail">
+                            <h4>Special Bond</h4>
+                            <p id="detailBond">Daddy's little girl forever</p>
+                        </div>
+                        <div class="fullscreen-card-detail">
+                            <h4>Fun Fact</h4>
+                            <p id="detailFact">He secretly loves her more than cricket!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mixed Media Gallery -->
+        <section class="gallery-section magical-appear">
+            <h2 class="section-title">Magical Moments (Images & Videos)</h2>
+            
+            <div class="media-gallery">
+                <!-- Image 1 -->
+                <div class="media-item">
+                    <img src="images/kiara/firststep.jpeg" 
+                         alt="Kiara's First Step">
+                    <div class="media-overlay">
+                        <div class="media-title">First Step</div>
+                        <div class="media-desc">The day our hearts melted</div>
+                    </div>
+                </div>
+                 <div class="media-item">
+                    <img src="images/kiara/firstpic.jpeg" 
+                         alt="Kiara's First Step">
+                    <div class="media-overlay">
+                        <div class="media-title">First pic</div>
+                        <div class="media-desc">the first picture of our little princesses</div>
+                    </div>
+                </div>
+                
+                <!-- Video 1 -->
+                <div class="media-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="vedios/kite.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-tag">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEO</span>
+                    </div>
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="media-overlay">
+                        <div class="media-title">Playful Moments</div>
+                        <div class="media-desc">Happy times captured forever</div>
+                    </div>
+                </div>
+                
+                <!-- Image 2 -->
+                <div class="media-item">
+                    <img src="images/beach 12.jpeg" 
+                         alt="Beach Day">
+                    <div class="media-overlay">
+                        <div class="media-title">Beach Day</div>
+                        <div class="media-desc">A Beautiful Day in Beach</div>
+                    </div>
+                </div>
+                 <div class="media-item">
+                    <img src="images/yellow.jpeg" 
+                         alt="our Cutiepie">
+                    <div class="media-overlay">
+                        <div class="media-title">our Cutiepie</div>
+                        <div class="media-desc">How cute that she  is 💗</div>
+                    </div>
+                </div>
+                <!-- Video 2 -->
+                <div class="media-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="vedios/mama girl.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-tag">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEO</span>
+                    </div>
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="media-overlay">
+                        <div class="media-title">Mawa Care</div>
+                        <div class="media-desc">Cutiepie learning car with mawa</div>
+                    </div>
+                </div>
+                
+                <!-- Image 3 -->
+                <div class="media-item">
+                    <img src="images/birthday/5.jpeg" 
+                         alt="Kiara Celebration">
+                    <div class="media-overlay">
+                        <div class="media-title">Special Celebration</div>
+                        <div class="media-desc">Birthday magic and smiles</div>
+                    </div>
+                </div>
+                
+                <!-- Image 4 -->
+                <div class="media-item">
+                    <img src="images/banner/banner1.jpeg" 
+                         alt="Family Love">
+                    <div class="media-overlay">
+                        <div class="media-title">Family Love</div>
+                        <div class="media-desc">Surrounded by endless love</div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="media-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="vedios/babai girl.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-tag">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEO</span>
+                    </div>
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="media-overlay">
+                        <div class="media-title">Babai's Kutty</div>
+                        <div class="media-desc">Bond with her babai</div>
+                    </div>
+                </div>
+                
+                <!-- Image 5 -->
+                <div class="media-item">
+                    <img src="images/uniform 12.jpeg" 
+                         alt="First Uniform Dress">
+                    <div class="media-overlay">
+                        <div class="media-title">First School Uniform</div>
+                        <div class="media-desc">How cute she is in her school uniform</div>
+                    </div>
+                </div>
+                
+                <!-- Duplicate for infinite scroll effect -->
+                <div class="media-item">
+                    <img src="images/kiara/firststep.jpeg" 
+                         alt="Kiara's First Step">
+                    <div class="media-overlay">
+                        <div class="media-title">First Step</div>
+                        <div class="media-desc">The day our hearts melted</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer magical-appear">
+            <p>Crafted with <span class="footer-heart"><i class="fas fa-heart"></i></span> for Princess Kiara</p>
+            <p>Every moment with you is a treasure we cherish forever</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">
+                <i class="fas fa-sparkles"></i> Made with magical code & infinite love <i class="fas fa-sparkles"></i>
+            </p>
+        </footer>
+    </main>
+
+    <script>
+        // Initialize
+        const backBtn = document.getElementById('backBtn');
+        const heartsBg = document.getElementById('heartsBg');
+        const scrollParticles = document.getElementById('scrollParticles');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        const moreFamilySection = document.getElementById('moreFamilySection');
+        const fullscreenCard = document.getElementById('fullscreenCard');
+        const closeFullscreen = document.getElementById('closeFullscreen');
+        const familyCards = document.querySelectorAll('.family-card');
+
+        // Family member data for fullscreen view
+        const familyData = {
+            father: {
+                name: "Guru Teja Jayampu",
+                relation: "Father",
+                desc: "Proud father who loves his princess more than anything in the world. He works hard to provide the best for his family and always makes time for bedtime stories and weekend adventures.",
+                role: "Protector and Provider",
+                activity: "Playing with his princess, Reading stories",
+                bond: "Daddy's little girl forever",
+                fact: "He secretly loves her more than cricket!"
+            },
+            mother: {
+                name: "Vasudha Jayampu",
+                relation: "Mother",
+                desc: "Loving mother who is her princess's biggest supporter and best friend. She knows all the secret ways to make her smile and has endless patience for tea parties and dress-up.",
+                role: "Nurturer and Guide",
+                activity: "Baking cookies, Singing lullabies",
+                bond: "Unbreakable mother-daughter bond",
+                fact: "She keeps a journal of every cute thing Kiara says!"
+            },
+            grandfather: {
+                name: "Jayampu BuchiBabu",
+                relation: "Grandfather",
+                desc: "Wise grandfather who tells the best stories and gives the warmest hugs. He loves to share tales of his youth and teach traditional values to his precious granddaughter.",
+                role: "Family Patriarch and Storyteller",
+                activity: "Garden walks, Storytelling",
+                bond: "Special bond of wisdom and love",
+                fact: "He built a special swing just for Kiara!"
+            },
+            grandmother: {
+                name: "Banu Jayampu",
+                relation: "Grandmother",
+                desc: "Caring grandmother who makes the tastiest treats and gives endless love. Her kitchen always smells of freshly baked cookies, and her lap is the coziest place for naps.",
+                role: "Family Matriarch and Caregiver",
+                activity: "Cooking, Knitting",
+                bond: "Grandma's special girl",
+                fact: "She secretly slips extra chocolates to Kiara!"
+            },
+            babai: {
+                name: "Harsha Jayampu",
+                relation: "Babai ",
+                desc: "Fun-loving uncle who always knows how to make his niece laugh and play. He's the one who brings exciting gifts and turns ordinary days into adventures.",
+                role: "Fun Uncle and Protector",
+                activity: "Outdoor games, Movie nights",
+                bond: "Partner-in-crime for fun",
+                fact: "He taught Kiara her first dance moves!"
+            }
+           
+        };
+
+        // Create floating hearts
+        function createHearts() {
+            const heartIcons = ['❤️', '💖', '💕', '💗', '💓', '💞'];
+            for(let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 20;
+                const size = Math.random() * 15 + 15;
+                
+                heart.style.left = `${left}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                heartsBg.appendChild(heart);
+            }
+        }
+
+        // Create scrolling particles
+        function createScrollParticles() {
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 15;
+                const size = Math.random() * 4 + 1;
+                
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                // Random color
+                const colors = [
+                    'rgba(255, 45, 117, 0.8)',
+                    'rgba(157, 78, 221, 0.8)',
+                    'rgba(255, 126, 179, 0.8)',
+                    'rgba(0, 255, 247, 0.8)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                scrollParticles.appendChild(particle);
+            }
+        }
+
+        // Update scroll progress bar
+        function updateScrollProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + "%";
+            
+            // Add magical sparkles when reaching certain scroll points
+            if (scrolled > 25 && scrolled < 30) {
+                createScrollSparkles();
+            }
+            if (scrolled > 50 && scrolled < 55) {
+                createScrollSparkles();
+            }
+            if (scrolled > 75 && scrolled < 80) {
+                createScrollSparkles();
+            }
+        }
+
+        // Create magical sparkles on scroll
+        function createScrollSparkles() {
+            for(let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.style.cssText = `
+                    position: fixed;
+                    width: 8px;
+                    height: 8px;
+                    background: radial-gradient(circle, #ffd700, #ff4d8d);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    left: ${Math.random() * 100}vw;
+                    top: ${Math.random() * 100}vh;
+                `;
+                
+                document.body.appendChild(sparkle);
+                
+                sparkle.animate([
+                    {
+                        transform: 'scale(1)',
+                        opacity: 1
+                    },
+                    {
+                        transform: 'scale(0)',
+                        opacity: 0
+                    }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                });
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        // Back button functionality
+        backBtn.addEventListener('click', () => {
+            createSparkle(backBtn.getBoundingClientRect());
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 800);
+        });
+
+        // Show more family members
+        showMoreBtn.addEventListener('click', () => {
+            moreFamilySection.style.display = 'block';
+            showMoreBtn.style.display = 'none';
+            
+            // Scroll to the section with animation
+            moreFamilySection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Add magical entrance animation
+            moreFamilySection.classList.remove('magical-appear');
+            void moreFamilySection.offsetWidth; // Trigger reflow
+            moreFamilySection.classList.add('magical-appear');
+        });
+
+        // Open family card in fullscreen
+        familyCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const member = this.getAttribute('data-member');
+                const data = familyData[member] || familyData.father; // Default to father if data not found
+                
+                // Update fullscreen card content
+                document.getElementById('fullscreenImg').src = this.querySelector('img').src;
+                document.getElementById('fullscreenName').textContent = data.name;
+                document.getElementById('fullscreenRelation').textContent = data.relation;
+                document.getElementById('fullscreenDesc').textContent = data.desc;
+                document.getElementById('detailRole').textContent = data.role;
+                document.getElementById('detailActivity').textContent = data.activity;
+                document.getElementById('detailBond').textContent = data.bond;
+                document.getElementById('detailFact').textContent = data.fact;
+                
+                // Show fullscreen card with animation
+                fullscreenCard.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Add magical entrance effect
+                createFullscreenSparkles();
+            });
+        });
+
+        // Close fullscreen card
+        closeFullscreen.addEventListener('click', () => {
+            fullscreenCard.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close fullscreen when clicking outside content
+        fullscreenCard.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Sparkle effect function
+        function createSparkle(position) {
+            const sparkle = document.createElement('div');
+            sparkle.style.cssText = `
+                position: fixed;
+                width: 10px;
+                height: 10px;
+                background: radial-gradient(circle, #ffd700, #ff4d8d);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1000;
+                left: ${position.left + position.width/2}px;
+                top: ${position.top + position.height/2}px;
+            `;
+            
+            document.body.appendChild(sparkle);
+            
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 60 + 30;
+            
+            sparkle.animate([
+                {
+                    transform: 'translate(0, 0) scale(1)',
+                    opacity: 1
+                },
+                {
+                    transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`,
+                    opacity: 0
+                }
+            ], {
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            setTimeout(() => sparkle.remove(), 800);
+        }
+
+        // Fullscreen sparkles
+        function createFullscreenSparkles() {
+            for(let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.style.cssText = `
+                    position: fixed;
+                    width: ${Math.random() * 10 + 5}px;
+                    height: ${Math.random() * 10 + 5}px;
+                    background: radial-gradient(circle, #ffd700, #ff4d8d, #00fff7);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 10000;
+                    left: ${Math.random() * 100}vw;
+                    top: ${Math.random() * 100}vh;
+                `;
+                
+                document.body.appendChild(sparkle);
+                
+                sparkle.animate([
+                    {
+                        transform: 'scale(1) rotate(0deg)',
+                        opacity: 1
+                    },
+                    {
+                        transform: 'scale(0) rotate(360deg)',
+                        opacity: 0
+                    }
+                ], {
+                    duration: 1500,
+                    easing: 'ease-out'
+                });
+                
+                setTimeout(() => sparkle.remove(), 1500);
+            }
+        }
+
+        // Page entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.about-container').style.opacity = '0';
+            document.querySelector('.about-container').style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                document.querySelector('.about-container').style.transition = 'opacity 1s ease, transform 1s ease';
+                document.querySelector('.about-container').style.opacity = '1';
+                document.querySelector('.about-container').style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Initialize effects
+            createHearts();
+            createScrollParticles();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', updateScrollProgress);
+            
+            // Add magical appear effect on scroll
+            const magicalElements = document.querySelectorAll('.magical-appear');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'magicalAppear 0.8s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            magicalElements.forEach(el => observer.observe(el));
+        });
+
+        // Pause gallery animation on hover
+        const gallery = document.querySelector('.media-gallery');
+        gallery.addEventListener('mouseenter', () => {
+            gallery.style.animationPlayState = 'paused';
+            document.querySelectorAll('video').forEach(video => video.pause());
+        });
+        
+        gallery.addEventListener('mouseleave', () => {
+            gallery.style.animationPlayState = 'running';
+            document.querySelectorAll('video').forEach(video => video.play());
+        });
+
+        // Video play/pause on click
+        document.querySelectorAll('.media-item video').forEach(video => {
+            video.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (this.paused) {
+                    this.play();
+                } else {
+                    this.pause();
+                }
+            });
+        });
+
+        // Click effect on media items
+        document.querySelectorAll('.media-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const rect = this.getBoundingClientRect();
+                for(let i = 0; i < 8; i++) {
+                    createSparkle(rect);
+                }
+            });
+        });
+
+        // Video play button functionality
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const video = this.closest('.media-item').querySelector('video');
+                if (video) {
+                    if (video.paused) {
+                        video.play();
+                        this.innerHTML = '<i class="fas fa-pause"></i>';
+                    } else {
+                        video.pause();
+                        this.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                }
+            });
+        });
+
+        // Add keyboard support for fullscreen card
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && fullscreenCard.classList.contains('active')) {
+                fullscreenCard.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
