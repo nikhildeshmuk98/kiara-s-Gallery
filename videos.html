@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankranti Video Gallery - 2K26 Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --festive-orange: #FF6B35;
+            --festive-yellow: #FFD166;
+            --festive-green: #06D6A0;
+            --festive-red: #EF476F;
+            --festive-blue: #118AB2;
+            --dark-bg: #0c0400;
+            --neon-glow: 0 0 15px rgba(255, 107, 53, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: #ffffff;
+            --text-glow: 0 0 10px rgba(255, 209, 102, 0.8);
+        }
+
+        body {
+            background: 
+                linear-gradient(135deg, #0f0500 0%, #2c1100 30%, #0f0500 70%, #1a0800 100%),
+                url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sankranti Theme Background Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 90% 30%, rgba(255, 209, 102, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(6, 214, 160, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 10%, rgba(239, 71, 111, 0.15) 0%, transparent 40%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M100,20 L120,80 L180,80 L130,120 L150,180 L100,140 L50,180 L70,120 L20,80 L80,80 Z" fill="%23FFD166" opacity="0.08"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animated Kites Background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><polygon points="30,0 45,30 30,60 15,30" fill="%23EF476F" opacity="0.1"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><polygon points="20,0 30,20 20,40 10,20" fill="%2306D6A0" opacity="0.1"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><polygon points="40,0 60,40 40,80 20,40" fill="%23FF6B35" opacity="0.1"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><polygon points="25,0 35,25 25,50 15,25" fill="%23FFD166" opacity="0.1"/></svg>');
+            background-size: 60px 60px, 40px 40px, 80px 80px, 50px 50px;
+            background-position: 10% 20%, 90% 40%, 70% 70%, 30% 80%;
+            animation: floatKites 30s infinite linear;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gallery Header */
+        .gallery-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--festive-yellow), var(--festive-orange), transparent);
+        }
+
+        .back-arrow {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--festive-yellow);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background: rgba(255, 107, 53, 0.15);
+            border: 2px solid rgba(255, 209, 102, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .back-arrow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 209, 102, 0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .back-arrow:hover {
+            background: linear-gradient(45deg, var(--festive-orange), var(--festive-red));
+            transform: translateX(-5px) scale(1.1);
+            box-shadow: 
+                0 0 20px var(--festive-orange),
+                0 0 40px rgba(255, 107, 53, 0.5);
+            color: white;
+        }
+
+        .back-arrow:hover::before {
+            transform: translateX(100%);
+        }
+
+        .gallery-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--festive-yellow), var(--festive-orange), var(--festive-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(255, 107, 53, 0.3);
+            text-align: center;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .gallery-title::before, .gallery-title::after {
+            content: '✻';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--festive-yellow);
+            font-size: 1.8rem;
+            animation: spin 4s infinite linear;
+        }
+
+        .gallery-title::before {
+            left: -10px;
+        }
+
+        .gallery-title::after {
+            right: -10px;
+        }
+
+        /* Hero Banner Section */
+        .hero-banner {
+            width: 100%;
+            max-width: 1400px;
+            height: 500px;
+            margin: 0 auto 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 209, 102, 0.1);
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.1), rgba(255, 209, 102, 0.05), rgba(6, 214, 160, 0.1)) border-box;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-banner:hover .hero-video {
+            transform: scale(1.02);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(12, 4, 0, 0.95) 30%, transparent 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: opacity 0.5s ease;
+        }
+
+        .banner-title {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            color: var(--festive-yellow);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            background: linear-gradient(to right, var(--festive-yellow), var(--festive-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .banner-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Video Controls */
+        .video-controls {
+            position: absolute;
+            bottom: 120px;
+            left: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .control-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(12, 4, 0, 0.8);
+            border: 2px solid rgba(255, 209, 102, 0.6);
+            color: var(--festive-yellow);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 209, 102, 0.2);
+            transform: scale(1.15);
+            box-shadow: 
+                0 0 20px rgba(255, 209, 102, 0.7),
+                0 0 40px rgba(255, 209, 102, 0.3);
+            border-color: var(--festive-yellow);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .video-item {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            background: rgba(12, 4, 0, 0.6);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .video-item:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 25px 50px rgba(255, 107, 53, 0.5),
+                0 0 0 1px rgba(255, 209, 102, 0.3);
+            border-color: var(--festive-orange);
+        }
+
+        .video-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 107, 53, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .video-item:hover::after {
+            transform: translateX(100%);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+            border-bottom: 3px solid var(--festive-orange);
+            transition: all 0.4s ease;
+        }
+
+        .video-item:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .video-info {
+            padding: 20px;
+            background: rgba(12, 4, 0, 0.85);
+        }
+
+        .video-title {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--festive-yellow);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .video-duration {
+            font-size: 0.95rem;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(12, 4, 0, 0.9);
+            border: 2px solid var(--festive-green);
+            color: var(--festive-green);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .download-btn:hover {
+            background: var(--festive-green);
+            color: #000;
+            transform: scale(1.15);
+            box-shadow: 
+                0 0 25px rgba(6, 214, 160, 0.8),
+                0 0 50px rgba(6, 214, 160, 0.3);
+        }
+
+        /* Sankranti Decorative Elements */
+        .sankranti-decoration {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .kite {
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--festive-red), var(--festive-orange));
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: float 10s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(239, 71, 111, 0.5));
+        }
+
+        .rangoli {
+            position: fixed;
+            bottom: 5%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--festive-yellow) 0%, var(--festive-orange) 50%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: pulse 8s infinite ease-in-out;
+        }
+
+        /* Loading State */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: var(--festive-yellow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 209, 102, 0.2);
+            border-top: 4px solid var(--festive-yellow);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes pageEnter {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(15deg); }
+        }
+
+        @keyframes floatKites {
+            0% { background-position: 10% 20%, 90% 40%, 70% 70%, 30% 80%; }
+            50% { background-position: 15% 25%, 85% 45%, 75% 75%, 35% 85%; }
+            100% { background-position: 10% 20%, 90% 40%, 70% 70%, 30% 80%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.2); opacity: 0.25; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .page-content {
+            animation: pageEnter 0.8s ease-out forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* No Videos Message */
+        .no-videos {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--festive-yellow);
+            font-size: 1.5rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-banner {
+                height: 450px;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .gallery-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-banner {
+                height: 400px;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .video-controls {
+                bottom: 100px;
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+                order: 1;
+            }
+            
+            .back-arrow {
+                align-self: flex-start;
+                order: 0;
+            }
+            
+            .hero-banner {
+                height: 350px;
+                margin: 0 15px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .banner-title {
+                font-size: 1.6rem;
+            }
+            
+            .banner-description {
+                font-size: 1rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .video-controls {
+                bottom: 90px;
+                left: 20px;
+            }
+            
+            .control-btn {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-title {
+                font-size: 1.7rem;
+            }
+            
+            .hero-banner {
+                height: 300px;
+            }
+            
+            .banner-overlay {
+                padding: 20px;
+            }
+            
+            .banner-title {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            
+            .banner-description {
+                font-size: 0.9rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-item {
+                max-width: 100%;
+            }
+            
+            .kite, .rangoli {
+                display: none;
+            }
+        }
+
+        /* Video Fallback Styling */
+        .video-fallback {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a0a00, #2c1100);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--festive-yellow);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-fallback i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--festive-orange);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sankranti Decorative Elements -->
+    <div class="kite sankranti-decoration"></div>
+    <div class="rangoli sankranti-decoration"></div>
+    
+    <div class="page-content">
+        <!-- Gallery Header -->
+        <header class="gallery-header glass">
+            <div class="back-arrow glass" id="backArrow" title="Back to Main Page">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="gallery-title">
+                <i class="fas fa-play-circle"></i>  Video Gallery
+            </div>
+            <div style="width: 55px; visibility: hidden;"></div> <!-- Spacer for alignment -->
+        </header>
+
+        <!-- Hero Banner Section -->
+        <section class="hero-banner glass" id="heroBanner">
+            <video class="hero-video" id="heroVideo" controls poster="videos/10.mp4">
+                <!-- Video will be loaded dynamically -->
+            </video>
+            <div class="banner-overlay" id="bannerOverlay">
+                <h2 class="banner-title" id="bannerTitle">Sankranti Festival Celebration</h2>
+                <p class="banner-description" id="bannerDescription">Experience the joy and colors of Sankranti festival with these amazing videos from our celebrations. Click any video thumbnail to watch it here!</p>
+            </div>
+            
+            <!-- Video Controls -->
+            <div class="video-controls">
+                <div class="control-btn" id="muteBtn" title="Toggle Sound">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="control-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Grid -->
+        <div class="video-grid" id="videoGrid">
+            <!-- Videos will be loaded here -->
+            <div class="loading" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <span>Loading Sankranti Videos...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video data with titles, descriptions, durations and thumbnails
+        const videoData = [
+            {
+                url: 'videos/bhogi pollu.mp4',
+                thumbnail: 'videos/bhogi pollu.mp4',
+                title: 'Bhogi Pallu',
+                description: '',
+                duration: '0:15'
+            },
+            {
+                url: 'videos/sankranti.mp4',
+                thumbnail: 'videos/sankranti.mp4',
+                title: 'butta Bomma',
+                description: '',
+                duration: '0:23'
+            },
+            {
+                url: 'videos/shirt.mp4',
+                thumbnail: 'videos/shirt.mp4',
+                title: 'wearing babai shirt',
+                description: '',
+                duration: '0:12'
+            },
+            {
+                url: 'videos/mikey mouse 1.mp4',
+                thumbnail: 'videos/mikey mouse 1.mp4',
+                title: 'playing ',
+                description: '',
+                duration: '0:10'
+            },
+            {
+                url: 'videos/mikey mouse 2.mp4',
+                thumbnail: 'videos/mikey mouse 2.mp4',
+                title: 'playing',
+                description: '',
+                duration: '0:30'
+            },
+            {
+                url: 'videos/mikey mouse 3.mp4',
+                thumbnail: 'videos/mikey mouse 3.mp4',
+                title: 'playing',
+                description: '',
+                duration: '0:45'
+            },
+            {
+                url: 'videos/mikey mouse 5.mp4',
+                thumbnail: 'videos/mikey mouse 5.mp4',
+                title: 'playing',
+                description: '',
+                duration: '0:15'
+            },
+            {
+                url: 'videos/mikey mouse 6.mp4',
+                thumbnail: 'videos/mikey mouse 6.mp4',
+                title: 'playing',
+                description: '',
+                duration: '0:50'
+            }
+        ];
+
+        // DOM Elements
+        const backArrow = document.getElementById('backArrow');
+        const videoGrid = document.getElementById('videoGrid');
+        const heroVideo = document.getElementById('heroVideo');
+        const bannerTitle = document.getElementById('bannerTitle');
+        const bannerDescription = document.getElementById('bannerDescription');
+        const muteBtn = document.getElementById('muteBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const bannerOverlay = document.getElementById('bannerOverlay');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        // State variables
+        let currentVideoIndex = 0;
+        let isMuted = false;
+        let isFullscreen = false;
+
+        // Initialize the page
+        function init() {
+            // Hide loading indicator
+            setTimeout(() => {
+                loadingIndicator.style.display = 'none';
+                
+                // Set a random video for the hero banner
+                setRandomHeroVideo();
+                
+                // Load videos into video gallery
+                videoData.forEach((video, index) => {
+                    createVideoCard(video, index);
+                });
+            }, 1000);
+
+            // Add event listeners
+            backArrow.addEventListener('click', goBack);
+            muteBtn.addEventListener('click', toggleMute);
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            
+            // Hide overlay when video starts playing
+            heroVideo.addEventListener('play', () => {
+                bannerOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    bannerOverlay.style.display = 'none';
+                }, 300);
+            });
+            
+            // Show overlay when video is paused
+            heroVideo.addEventListener('pause', () => {
+                bannerOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    bannerOverlay.style.opacity = '1';
+                }, 10);
+            });
+            
+            // Show overlay when video ends
+            heroVideo.addEventListener('ended', () => {
+                bannerOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    bannerOverlay.style.opacity = '1';
+                }, 10);
+                
+                // Play next video automatically
+                setTimeout(playNextVideo, 2000);
+            });
+            
+            // Handle fullscreen change
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+        }
+
+        // Create a video card for the grid
+        function createVideoCard(video, index) {
+            const videoItem = document.createElement('div');
+            videoItem.className = 'video-item glass';
+            videoItem.innerHTML = `
+                <img src="${video.thumbnail}" class="video-thumbnail" data-index="${index}" alt="${video.title}" loading="lazy">
+                <div class="video-info">
+                    <h3 class="video-title">${video.title}</h3>
+                    <div class="video-duration">
+                        <i class="far fa-clock"></i> ${video.duration}
+                    </div>
+                </div>
+                <div class="download-btn" data-url="${video.url}" data-filename="${video.title.replace(/\s+/g, '-')}.mp4" title="Download Video">
+                    <i class="fas fa-download"></i>
+                </div>
+            `;
+            videoGrid.appendChild(videoItem);
+            
+            // Add click event to thumbnail
+            const thumbnail = videoItem.querySelector('.video-thumbnail');
+            thumbnail.addEventListener('click', () => playVideoInBanner(index));
+            
+            // Add click event to download button
+            const downloadBtn = videoItem.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent triggering thumbnail click
+                downloadVideo(video.url, video.title);
+            });
+            
+            // Add hover effect to show play button
+            thumbnail.addEventListener('mouseenter', () => {
+                videoItem.style.transform = 'translateY(-15px) scale(1.03)';
+            });
+            
+            thumbnail.addEventListener('mouseleave', () => {
+                if (currentVideoIndex !== index) {
+                    videoItem.style.transform = '';
+                }
+            });
+        }
+
+        // Set a random video in the hero banner
+        function setRandomHeroVideo() {
+            // Select a random video
+            currentVideoIndex = Math.floor(Math.random() * videoData.length);
+            const video = videoData[currentVideoIndex];
+            
+            heroVideo.src = video.url;
+            heroVideo.poster = video.thumbnail;
+            bannerTitle.textContent = video.title;
+            bannerDescription.textContent = video.description;
+            
+            // Preload the video
+            heroVideo.load();
+            
+            // Highlight the selected video in the grid
+            highlightSelectedVideo();
+        }
+
+        // Play selected video in the hero banner
+        function playVideoInBanner(index) {
+            if (index >= 0 && index < videoData.length) {
+                currentVideoIndex = index;
+                const video = videoData[index];
+                
+                heroVideo.src = video.url;
+                bannerTitle.textContent = video.title;
+                bannerDescription.textContent = video.description;
+                
+                // Show overlay while video loads
+                bannerOverlay.style.display = 'flex';
+                bannerOverlay.style.opacity = '1';
+                
+                // Load and play the video
+                heroVideo.load();
+                
+                // Try to play the video
+                const playPromise = heroVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => {
+                        console.log("Autoplay prevented:", e);
+                        // Show play button overlay
+                        bannerOverlay.style.display = 'flex';
+                        bannerOverlay.style.opacity = '1';
+                    });
+                }
+                
+                // Highlight the selected video in the grid
+                highlightSelectedVideo();
+                
+                // Scroll to the hero banner for better view
+                document.getElementById('heroBanner').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
+
+        // Play next video in sequence
+        function playNextVideo() {
+            const nextIndex = (currentVideoIndex + 1) % videoData.length;
+            playVideoInBanner(nextIndex);
+        }
+
+        // Highlight the currently selected video in the grid
+        function highlightSelectedVideo() {
+            // Remove highlight from all videos
+            const allVideoItems = document.querySelectorAll('.video-item');
+            allVideoItems.forEach(item => {
+                item.style.boxShadow = '';
+                item.style.borderColor = 'rgba(255, 107, 53, 0.2)';
+                item.style.transform = '';
+            });
+            
+            // Highlight the selected video
+            const selectedThumbnail = document.querySelector(`.video-thumbnail[data-index="${currentVideoIndex}"]`);
+            if (selectedThumbnail) {
+                const selectedVideoItem = selectedThumbnail.closest('.video-item');
+                selectedVideoItem.style.boxShadow = 
+                    '0 25px 50px rgba(255, 107, 53, 0.7), 0 0 0 2px rgba(255, 209, 102, 0.5)';
+                selectedVideoItem.style.borderColor = 'var(--festive-orange)';
+                selectedVideoItem.style.transform = 'translateY(-10px) scale(1.02)';
+            }
+        }
+
+        // Toggle mute/unmute
+        function toggleMute() {
+            isMuted = !isMuted;
+            heroVideo.muted = isMuted;
+            
+            // Update button icon
+            const icon = muteBtn.querySelector('i');
+            if (isMuted) {
+                icon.className = 'fas fa-volume-mute';
+                muteBtn.title = "Unmute Sound";
+                muteBtn.style.color = 'var(--festive-red)';
+                muteBtn.style.borderColor = 'rgba(239, 71, 111, 0.6)';
+            } else {
+                icon.className = 'fas fa-volume-up';
+                muteBtn.title = "Mute Sound";
+                muteBtn.style.color = 'var(--festive-yellow)';
+                muteBtn.style.borderColor = 'rgba(255, 209, 102, 0.6)';
+            }
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            const heroBanner = document.getElementById('heroBanner');
+            
+            if (!isFullscreen) {
+                if (heroBanner.requestFullscreen) {
+                    heroBanner.requestFullscreen();
+                } else if (heroBanner.webkitRequestFullscreen) {
+                    heroBanner.webkitRequestFullscreen();
+                } else if (heroBanner.mozRequestFullScreen) {
+                    heroBanner.mozRequestFullScreen();
+                } else if (heroBanner.msRequestFullscreen) {
+                    heroBanner.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Handle fullscreen change
+        function handleFullscreenChange() {
+            isFullscreen = !!(document.fullscreenElement || 
+                            document.webkitFullscreenElement || 
+                            document.mozFullScreenElement || 
+                            document.msFullscreenElement);
+            
+            // Update fullscreen button icon
+            const icon = fullscreenBtn.querySelector('i');
+            if (isFullscreen) {
+                icon.className = 'fas fa-compress';
+                fullscreenBtn.title = "Exit Fullscreen";
+                fullscreenBtn.style.color = 'var(--festive-green)';
+                fullscreenBtn.style.borderColor = 'rgba(6, 214, 160, 0.6)';
+            } else {
+                icon.className = 'fas fa-expand';
+                fullscreenBtn.title = "Enter Fullscreen";
+                fullscreenBtn.style.color = 'var(--festive-yellow)';
+                fullscreenBtn.style.borderColor = 'rgba(255, 209, 102, 0.6)';
+            }
+        }
+
+        // Download video
+        function downloadVideo(url, title) {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${title.replace(/\s+/g, '-')}.mp4`;
+            
+            // Append to the document, click and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show download confirmation
+            const originalTitle = bannerTitle.textContent;
+            const originalColor = bannerTitle.style.color;
+            
+            bannerTitle.textContent = "Download Started! 🎉";
+            bannerTitle.style.color = "#06D6A0";
+            
+            // Add festive animation
+            bannerOverlay.style.animation = 'none';
+            setTimeout(() => {
+                bannerOverlay.style.animation = 'pageEnter 0.5s ease-out';
+            }, 10);
+            
+            setTimeout(() => {
+                bannerTitle.textContent = originalTitle;
+                bannerTitle.style.color = originalColor;
+            }, 3000);
+        }
+
+        // Go back to view.html
+        function goBack() {
+            // Add exit animation
+            document.querySelector('.page-content').style.animation = 'pageEnter 0.6s reverse forwards';
+            document.querySelector('.page-content').style.opacity = '0';
+            
+            // Show loading/transition effect
+            const transitionOverlay = document.createElement('div');
+            transitionOverlay.className = 'video-fallback';
+            transitionOverlay.style.position = 'fixed';
+            transitionOverlay.style.top = '0';
+            transitionOverlay.style.left = '0';
+            transitionOverlay.style.width = '100%';
+            transitionOverlay.style.height = '100%';
+            transitionOverlay.style.backgroundColor = 'var(--dark-bg)';
+            transitionOverlay.style.zIndex = '10000';
+            transitionOverlay.style.display = 'flex';
+            transitionOverlay.style.flexDirection = 'column';
+            transitionOverlay.style.alignItems = 'center';
+            transitionOverlay.style.justifyContent = 'center';
+            transitionOverlay.innerHTML = `
+                <i class="fas fa-spinner fa-spin" style="font-size: 4rem; color: var(--festive-yellow); margin-bottom: 30px;"></i>
+                <h2 style="color: var(--festive-yellow); margin-bottom: 20px; text-align: center;">Returning to Main Page...</h2>
+                <p style="color: var(--festive-orange); text-align: center; max-width: 500px; padding: 0 20px;">Thank you for exploring the Sankranti Video Gallery! Wishing you a happy Sankranti! 🪁🎉</p>
+            `;
+            document.body.appendChild(transitionOverlay);
+            
+            // Redirect after delay
+            setTimeout(() => {
+                // In a real scenario, redirect to view.html
+                // window.location.href = 'view.html';
+                
+                // For demo purposes, we'll show an alert
+                window.location.href = 'view.html'; // Change this to your actual view.html path
+            }, 2000);
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+        
+        // Add a welcome message in console
+        console.log('%c🎉 Sankranti Video Gallery Loaded! 🪁', 'color: #FFD166; font-size: 18px; font-weight: bold;');
+        console.log('%cExperience the vibrant colors of Sankranti!', 'color: #06D6A0; font-size: 14px;');
+    </script>
+</body>
+</html>

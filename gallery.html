@@ -759,6 +759,7 @@
            
             <button class="filter-btn" data-filter="beach">Beach Photos</button>
              <button class="filter-btn" data-filter="little krishna">little krishna</button>
+              <button class="filter-btn" onclick="open2k26()">2K26</button>
         </div>
 
         <div class="nav-right">
@@ -791,6 +792,7 @@
             
             <button class="mobile-filter-btn" data-filter="beach">Beach Photos</button>
               <button class="mobile-filter-btn" data-filter="little krishna">little krishna</button>
+             <button class="mobile-filter-btn" onclick="open2k26()">2K26</button>
         </div>
     </div>
 
@@ -4408,6 +4410,10 @@
     </div>
 
     <script>
+        //to open 2k26 page separately
+          function open2k26() {
+    window.location.href = "2k26.html";
+  }
         // DOM Elements
         const backBtn = document.getElementById('backBtn');
         const heartsBtn = document.getElementById('heartsBtn');

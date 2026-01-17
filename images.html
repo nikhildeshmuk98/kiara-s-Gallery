@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhogi Festival Gallery - 2K26 Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --bhogi-red: #c53030;
+            --bhogi-orange: #f97316;
+            --bhogi-yellow: #fbbf24;
+            --bhogi-gold: #eab308;
+            --bhogi-brown: #78350f;
+            --bhogi-dark: #1c1917;
+            --glass-bg: rgba(28, 25, 23, 0.75);
+            --glass-border: rgba(251, 191, 36, 0.25);
+            --glass-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
+            --text-light: #ffffff;
+            --text-glow: 0 0 15px rgba(251, 191, 36, 0.8);
+            --fire-gradient: linear-gradient(45deg, #c53030, #f97316, #fbbf24);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0a09 0%, #1c1917 50%, #0c0a09 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Bhogi-themed background with festive elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 90% 30%, rgba(220, 38, 38, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(251, 191, 36, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* Fire particles animation */
+        .fire-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .fire-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--fire-gradient);
+            filter: blur(2px);
+            animation: floatUp 15s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(var(--move-x)) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Traditional rangoli pattern overlay */
+        .rangoli-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, transparent 60%, rgba(251, 191, 36, 0.03) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(220, 38, 38, 0.03) 10px, rgba(220, 38, 38, 0.03) 20px);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* Festival header */
+        .festival-header {
+            text-align: center;
+            padding: 20px 0 10px;
+            position: relative;
+        }
+
+        .festival-title {
+            font-family: 'Noto Sans Telugu', 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--fire-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--text-glow);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .festival-title::before, .festival-title::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            opacity: 0.8;
+        }
+
+        .festival-title::before {
+            left: -50px;
+        }
+
+        .festival-title::after {
+            right: -50px;
+        }
+
+        .festival-subtitle {
+            font-size: 1.2rem;
+            color: var(--bhogi-yellow);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Gallery Header */
+        .gallery-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            margin: 0 auto 30px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .back-arrow {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(197, 48, 48, 0.25);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-arrow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .back-arrow:hover {
+            background: var(--bhogi-red);
+            transform: translateX(-5px) scale(1.1);
+            box-shadow: 0 5px 25px rgba(245, 158, 11, 0.6);
+        }
+
+        .back-arrow:hover::before {
+            left: 100%;
+        }
+
+        .gallery-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--bhogi-yellow), var(--bhogi-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--text-glow);
+            font-family: 'Noto Sans Telugu', 'Poppins', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Decorative fire element */
+        .fire-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .flame {
+            width: 20px;
+            height: 40px;
+            background: var(--fire-gradient);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 1.5s infinite alternate;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.7);
+        }
+
+        .flame:nth-child(2) {
+            animation-delay: 0.2s;
+            height: 50px;
+            width: 25px;
+        }
+
+        .flame:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                transform: scaleY(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scaleY(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .image-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            box-shadow: 0 10px 20px rgba(12, 10, 9, 0.5);
+        }
+
+        .image-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.4);
+            border-color: var(--bhogi-yellow);
+        }
+
+        .image-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(28, 25, 23, 0.9) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(28, 25, 23, 0.95));
+            color: white;
+            z-index: 2;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .image-item:hover .image-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .image-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--bhogi-yellow);
+            margin-bottom: 5px;
+        }
+
+        .image-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .download-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(28, 25, 23, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--bhogi-yellow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+            z-index: 3;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .image-item:hover .download-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .download-icon:hover {
+            background: var(--bhogi-red);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(197, 48, 48, 0.5);
+        }
+
+        /* Fullscreen Image Viewer */
+        .fullscreen-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 10, 9, 0.98);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-image {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 80px rgba(245, 158, 11, 0.4);
+            border: 2px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .close-viewer {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(28, 25, 23, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--bhogi-yellow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .close-viewer:hover {
+            background: var(--bhogi-red);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(197, 48, 48, 0.6);
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(28, 25, 23, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--bhogi-yellow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .nav-arrow:hover {
+            background: var(--bhogi-red);
+            color: white;
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 5px 20px rgba(197, 48, 48, 0.6);
+        }
+
+        .arrow-left {
+            left: 30px;
+        }
+
+        .arrow-right {
+            right: 30px;
+        }
+
+        .image-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 30px;
+            background: rgba(28, 25, 23, 0.9);
+            border-radius: 25px;
+            font-size: 1.2rem;
+            color: var(--bhogi-yellow);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            font-weight: 500;
+        }
+
+        /* Bhogi celebration footer */
+        .festival-footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .festival-greeting {
+            font-size: 1.5rem;
+            color: var(--bhogi-yellow);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans Telugu', 'Poppins', sans-serif;
+        }
+
+        .festival-message {
+            max-width: 800px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .festival-title {
+                font-size: 2.8rem;
+            }
+            
+            .festival-title::before, .festival-title::after {
+                font-size: 1.4rem;
+            }
+            
+            .festival-title::before {
+                left: -40px;
+            }
+            
+            .festival-title::after {
+                right: -40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+            
+            .festival-title {
+                font-size: 2.2rem;
+            }
+            
+            .festival-title::before, .festival-title::after {
+                display: none;
+            }
+            
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+                padding: 10px;
+            }
+            
+            .nav-arrow {
+                width: 55px;
+                height: 55px;
+                font-size: 1.7rem;
+            }
+            
+            .arrow-left { left: 15px; }
+            .arrow-right { right: 15px; }
+            
+            .close-viewer {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .festival-title {
+                font-size: 1.8rem;
+            }
+            
+            .festival-subtitle {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+            
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes pageEnter {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-content {
+            animation: pageEnter 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fire particles -->
+    <div class="fire-particles" id="fireParticles"></div>
+    
+    <!-- Rangoli pattern overlay -->
+    <div class="rangoli-overlay"></div>
+    
+    <div class="page-content">
+        
+
+        <!-- Gallery Header -->
+        <header class="gallery-header glass">
+            <div class="back-arrow glass" id="backArrow">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="gallery-title">2K26 Gallery</div>
+            <div style="width: 60px;"></div> <!-- Spacer for alignment -->
+        </header>
+
+        <!-- Image Grid -->
+        <div class="image-grid" id="imageGrid">
+            <!-- Images will be loaded here -->
+        </div>
+
+       
+        </div>
+
+        <!-- Fullscreen Image Viewer -->
+        <div class="fullscreen-viewer" id="fullscreenViewer">
+            <div class="close-viewer glass" id="closeViewer">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="nav-arrow glass arrow-left" id="prevImage">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <img class="fullscreen-image" id="fullscreenImage" src="" alt="Fullscreen view">
+            <div class="nav-arrow glass arrow-right" id="nextImage">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="image-counter glass" id="imageCounter">1 / 9</div>
+        </div>
+    </div>
+
+    <script>
+        // Bhogi festival-themed image data
+        const imageData = [
+           
+            {
+                url: 'images/2k26/san3.jpeg',
+                
+            },
+            {
+                url: 'images/2k26/san4.jpeg',
+                
+            },
+            {
+                url: 'images/2k26/san5.jpeg',
+               
+            },
+            {
+                url: 'images/2k26/san10.jpeg',
+                
+            },
+            {
+                url: 'images/2k26/san6.jpeg',
+               
+            },
+            {
+                url: 'images/2k26/san7.jpeg',
+              
+            },
+            {
+                url: 'images/2k26/san9.jpeg',
+                
+            },
+            {
+                url: 'images/2k26/san8.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/bogi1.jpeg',
+                
+            },
+           
+             {
+                url: 'images/2k26/bogi2.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi3.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi4.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi5.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi6.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi7.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi8.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi9.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi10.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi11.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi12.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi13.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi14.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi15.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi16.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi17.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi18.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi19.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi20.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi21.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi22.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi23.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi24.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi25.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi26.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi27.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi28.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi29.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi30.jpeg',
+               
+            },
+              {
+                url: 'images/2k26/bogi31.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern1.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern2.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern3.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern4.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern5.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern6.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern7.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern8.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern9.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern10.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern11.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern12.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern13.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern14.jpeg',
+               
+            },
+             {
+                url: 'images/2k26/modern15.jpeg',
+               
+            }
+
+            
+        ];
+
+        // DOM Elements
+        const backArrow = document.getElementById('backArrow');
+        const imageGrid = document.getElementById('imageGrid');
+        const fullscreenViewer = document.getElementById('fullscreenViewer');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const closeViewer = document.getElementById('closeViewer');
+        const prevImage = document.getElementById('prevImage');
+        const nextImage = document.getElementById('nextImage');
+        const imageCounter = document.getElementById('imageCounter');
+        const fireParticles = document.getElementById('fireParticles');
+
+        // State variables
+        let currentImageIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Create fire particles
+        function createFireParticles() {
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('fire-particle');
+                
+                // Random properties
+                const size = Math.random() * 6 + 4;
+                const startX = Math.random() * 100;
+                const moveX = (Math.random() - 0.5) * 100;
+                const duration = Math.random() * 10 + 15;
+                const delay = Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${startX}%`;
+                particle.style.setProperty('--move-x', `${moveX}px`);
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                fireParticles.appendChild(particle);
+            }
+        }
+
+        // Initialize the page
+        function init() {
+            // Create fire particles
+            createFireParticles();
+            
+            // Load images into gallery
+            imageData.forEach((image, index) => {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'image-item glass';
+                imageItem.innerHTML = `
+                    <img src="${image.url}" alt="${image.title}" loading="lazy">
+                    <div class="image-caption">
+                        <div class="image-title">${image.title}</div>
+                        <div class="image-desc">${image.desc}</div>
+                    </div>
+                    <div class="download-icon glass" onclick="downloadImage('${image.url}', ${index})">
+                        <i class="fas fa-download"></i>
+                    </div>
+                `;
+                imageItem.addEventListener('click', () => openFullscreen(index));
+                imageGrid.appendChild(imageItem);
+            });
+
+            // Add event listeners
+            backArrow.addEventListener('click', goBack);
+            closeViewer.addEventListener('click', closeFullscreen);
+            prevImage.addEventListener('click', showPrevImage);
+            nextImage.addEventListener('click', showNextImage);
+
+            // Add touch events for mobile swipe
+            fullscreenViewer.addEventListener('touchstart', handleTouchStart, false);
+            fullscreenViewer.addEventListener('touchend', handleTouchEnd, false);
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', handleKeyDown);
+            
+            // Add festive audio on first interaction
+            document.addEventListener('click', playFestiveSound, { once: true });
+        }
+
+        // Play festive sound on first interaction
+        function playFestiveSound() {
+            // Create a subtle bell sound for festival vibe
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (e) {
+                // Audio context not supported, silently fail
+            }
+        }
+
+        // Go back to view.html
+        function goBack() {
+            document.querySelector('.page-content').style.animation = 'pageEnter 0.5s reverse forwards';
+            setTimeout(() => {
+                window.location.href = 'view.html';
+            }, 300);
+        }
+
+        // Download individual image
+        function downloadImage(url, index) {
+            event.stopPropagation();
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `bhogi-festival-image-${index + 1}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show download feedback
+            const downloadBtn = event.target.closest('.download-icon');
+            if (downloadBtn) {
+                downloadBtn.innerHTML = '<i class="fas fa-check"></i>';
+                downloadBtn.style.background = 'var(--bhogi-red)';
+                downloadBtn.style.color = 'white';
+                
+                setTimeout(() => {
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
+                    downloadBtn.style.background = '';
+                    downloadBtn.style.color = '';
+                }, 1000);
+            }
+        }
+
+        // Open image in fullscreen viewer
+        function openFullscreen(index) {
+            currentImageIndex = index;
+            updateFullscreenImage();
+            fullscreenViewer.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close fullscreen viewer
+        function closeFullscreen() {
+            fullscreenViewer.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show previous image in fullscreen
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + imageData.length) % imageData.length;
+            updateFullscreenImage();
+        }
+
+        // Show next image in fullscreen
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % imageData.length;
+            updateFullscreenImage();
+        }
+
+        // Update fullscreen image display
+        function updateFullscreenImage() {
+            const image = imageData[currentImageIndex];
+            fullscreenImage.src = image.url;
+            fullscreenImage.alt = image.title;
+            imageCounter.textContent = `${currentImageIndex + 1} / ${imageData.length}`;
+        }
+
+        // Handle touch events for mobile swipe
+        function handleTouchStart(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        }
+
+        function handleTouchEnd(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    showNextImage();
+                } else {
+                    showPrevImage();
+                }
+            }
+        }
+
+        // Handle keyboard navigation
+        function handleKeyDown(event) {
+            if (fullscreenViewer.style.display === 'flex') {
+                switch(event.key) {
+                    case 'ArrowLeft':
+                        showPrevImage();
+                        break;
+                    case 'ArrowRight':
+                        showNextImage();
+                        break;
+                    case 'Escape':
+                        closeFullscreen();
+                        break;
+                }
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

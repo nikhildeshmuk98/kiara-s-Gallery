@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2K26 | CINEMATIC EXPERIENCE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Cinematic container */
+        #container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 100%);
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Cinematic gradient overlay */
+        .cinematic-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 20, 100, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 105, 180, 0.1) 0%, transparent 50%),
+                linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Back arrow with cinematic entrance */
+        .back-arrow {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 20, 100, 0.3);
+            box-shadow: 0 0 30px rgba(255, 20, 100, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: cinematicEntrance 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
+        }
+
+        .back-arrow:hover {
+            background: rgba(255, 20, 100, 0.3);
+            transform: scale(1.15) rotate(-15deg);
+            box-shadow: 0 0 40px rgba(255, 20, 100, 0.6);
+        }
+
+        .back-arrow i {
+            font-size: 24px;
+            color: #ffc2d6;
+            text-shadow: 0 0 15px rgba(255, 20, 100, 0.8);
+            transition: transform 0.3s ease;
+        }
+
+        /* CINEMATIC FULL-SCREEN BANNER */
+        .banner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            perspective: 2000px;
+        }
+
+        .banner-track {
+            position: absolute;
+            width: 500%;
+            height: 100%;
+            display: flex;
+            animation: cinematicSlideShow 35s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .banner-slide {
+            width: 20%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* FULL-SCREEN IMAGE with CINEMATIC EFFECT */
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            filter: brightness(0.8) contrast(1.2);
+            transform-origin: center;
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Cinematic image animations */
+        .slide-1 .banner-image {
+            animation: cinematicZoomIn 2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards,
+                       subtleFloat 12s ease-in-out 2.5s infinite;
+        }
+
+        .slide-2 .banner-image {
+            animation: cinematicSlideFromRight 2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards,
+                       subtlePanLeft 15s ease-in-out 2.5s infinite;
+        }
+
+        .slide-3 .banner-image {
+            animation: cinematicReveal 2.5s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards,
+                       subtleGlow 8s ease-in-out 3s infinite;
+        }
+
+        .slide-4 .banner-image {
+            animation: cinematicRiseUp 2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards,
+                       subtleZoom 10s ease-in-out 2.5s infinite;
+        }
+
+        .slide-5 .banner-image {
+            animation: cinematicSweepIn 2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards,
+                       subtleRotate 20s linear 2.5s infinite;
+        }
+
+        /* Image hover - CINEMATIC WOW EFFECT */
+        .banner-slide:hover .banner-image {
+            transform: scale(1.05) translateZ(50px);
+            filter: brightness(1.1) contrast(1.3) saturate(1.2);
+            box-shadow: 
+                0 0 100px rgba(255, 20, 100, 0.5),
+                inset 0 0 100px rgba(0, 0, 0, 0.3);
+            animation-play-state: paused;
+        }
+
+        /* Cinematic title overlay */
+        .cinematic-title {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            right: 10%;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: titleReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1.8s forwards;
+        }
+
+        .cinematic-title h2 {
+            font-size: 4.5vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, #ff0066, #ff4d8d, #ffc2d6, #ff4d8d, #ff0066);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 30px rgba(255, 20, 100, 0.5),
+                0 0 60px rgba(255, 20, 100, 0.3),
+                0 0 90px rgba(255, 20, 100, 0.2);
+            animation: gradientFlow 4s linear infinite;
+        }
+
+        .cinematic-title p {
+            font-size: 1.2vw;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Cinematic page indicator */
+        .page-indicator {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+            z-index: 30;
+            opacity: 0;
+            animation: cinematicFadeIn 1s ease 2.5s forwards;
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: rgba(255, 20, 100, 0.8);
+            transform: scale(1.5);
+            box-shadow: 
+                0 0 30px rgba(255, 20, 100, 0.8),
+                0 0 60px rgba(255, 20, 100, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .dot:hover {
+            transform: scale(1.8);
+            background: rgba(255, 20, 100, 1);
+        }
+
+        /* Cinematic view button */
+        .view-btn-container {
+            position: absolute;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            opacity: 0;
+            animation: cinematicButtonEntrance 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards;
+        }
+
+        .view-btn {
+            padding: 25px 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(90deg, 
+                rgba(255, 20, 100, 0.9) 0%, 
+                rgba(255, 105, 180, 0.9) 50%, 
+                rgba(255, 20, 100, 0.9) 100%);
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 
+                0 20px 50px rgba(255, 20, 100, 0.5),
+                0 0 40px rgba(255, 20, 100, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .view-btn:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 
+                0 30px 80px rgba(255, 20, 100, 0.7),
+                0 0 80px rgba(255, 20, 100, 0.5),
+                inset 0 0 40px rgba(255, 255, 255, 0.2);
+            letter-spacing: 6px;
+            background-position: right center;
+            animation: buttonPulse 1.5s infinite alternate;
+        }
+
+        /* Logo with cinematic glow */
+        .logo {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 3.5rem;
+            font-weight: 900;
+            z-index: 40;
+            opacity: 0;
+            animation: cinematicLogoEntrance 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards;
+            text-shadow: 
+                0 0 40px rgba(255, 20, 100, 0.8),
+                0 0 80px rgba(255, 20, 100, 0.6),
+                0 0 120px rgba(255, 20, 100, 0.4);
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, #ff0066, #ff4d8d, #ffc2d6, #ff4d8d, #ff0066);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShimmer 4s ease-in-out infinite;
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .loading-spinner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid transparent;
+            border-top: 6px solid #ff0066;
+            border-right: 6px solid #ff4d8d;
+            border-bottom: 6px solid #ffc2d6;
+            animation: cinematicSpin 2s linear infinite;
+            position: relative;
+        }
+
+        .loading-text {
+            margin-top: 40px;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ffc2d6;
+            text-shadow: 0 0 20px rgba(255, 20, 100, 0.8);
+            animation: textPulse 2s infinite alternate;
+        }
+
+        /* CINEMATIC ANIMATIONS */
+        @keyframes cinematicSpin {
+            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+        }
+
+        @keyframes cinematicEntrance {
+            0% { opacity: 0; transform: translateX(-100px) rotate(-180deg); }
+            100% { opacity: 1; transform: translateX(0) rotate(0); }
+        }
+
+        @keyframes cinematicLogoEntrance {
+            0% { opacity: 0; transform: translateX(100px) rotate(180deg) scale(0.3); }
+            100% { opacity: 1; transform: translateX(0) rotate(0) scale(1); }
+        }
+
+        @keyframes cinematicButtonEntrance {
+            0% { opacity: 0; transform: translateX(-50%) translateY(150px) scale(0.3); }
+            70% { opacity: 1; transform: translateX(-50%) translateY(-20px) scale(1.1); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+
+        @keyframes cinematicSlideShow {
+            0%, 16% { transform: translateX(0); }
+            20%, 36% { transform: translateX(-20%); }
+            40%, 56% { transform: translateX(-40%); }
+            60%, 76% { transform: translateX(-60%); }
+            80%, 96% { transform: translateX(-80%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* CINEMATIC IMAGE ANIMATIONS */
+        @keyframes cinematicZoomIn {
+            0% { opacity: 0; transform: scale(1.3); filter: blur(20px); }
+            100% { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+
+        @keyframes cinematicSlideFromRight {
+            0% { opacity: 0; transform: translateX(100%) scale(1.1); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        @keyframes cinematicReveal {
+            0% { opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+            100% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+
+        @keyframes cinematicRiseUp {
+            0% { opacity: 0; transform: translateY(100%) scale(1.1); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes cinematicSweepIn {
+            0% { opacity: 0; transform: translateX(-100%) rotateY(45deg); }
+            100% { opacity: 1; transform: translateX(0) rotateY(0); }
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.01); }
+        }
+
+        @keyframes subtlePanLeft {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(-20px) scale(1.02); }
+        }
+
+        @keyframes subtleGlow {
+            0%, 100% { filter: brightness(0.8) contrast(1.2); }
+            50% { filter: brightness(1) contrast(1.3) drop-shadow(0 0 20px rgba(255,20,100,0.3)); }
+        }
+
+        @keyframes subtleZoom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes subtleRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(1deg) scale(1.01); }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes gradientShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes titleReveal {
+            0% { opacity: 0; transform: translateY(50px) scale(0.8); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes cinematicFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 30px 80px rgba(255, 20, 100, 0.7), 0 0 80px rgba(255, 20, 100, 0.5); }
+            100% { box-shadow: 0 30px 80px rgba(255, 20, 100, 0.9), 0 0 100px rgba(255, 20, 100, 0.7); }
+        }
+
+        @keyframes textPulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Cinematic flash effect */
+        .cinematic-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,20,100,0.9) 0%, rgba(0,0,0,0.9) 70%);
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            animation: cinematicFlash 1s ease-out;
+        }
+
+        @keyframes cinematicFlash {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        /* Enhanced particle system */
+        .cinematic-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,20,100,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: cinematicFloat 15s infinite linear;
+        }
+
+        @keyframes cinematicFloat {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .cinematic-title h2 { font-size: 5vw; }
+            .cinematic-title p { font-size: 1.5vw; }
+        }
+
+        @media (max-width: 768px) {
+            .cinematic-title h2 { 
+                font-size: 8vw; 
+                letter-spacing: 4px;
+                margin-bottom: 15px;
+            }
+            .cinematic-title p { 
+                font-size: 2.5vw; 
+                padding: 15px 20px;
+                line-height: 1.6;
+            }
+            .view-btn { 
+                padding: 20px 40px; 
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+            }
+            .logo { font-size: 2.5rem; }
+            .page-indicator { bottom: 80px; }
+            .view-btn-container { bottom: 140px; }
+        }
+
+        @media (max-width: 480px) {
+            .cinematic-title h2 { font-size: 10vw; }
+            .cinematic-title p { font-size: 3.5vw; }
+            .view-btn { padding: 15px 30px; font-size: 1rem; }
+            .logo { font-size: 2rem; }
+            .page-indicator { gap: 15px; }
+            .dot { width: 15px; height: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">ENTERING  2K26 EXPERIENCE</div>
+    </div>
+
+    <!-- Main container -->
+    <div id="container">
+        <!-- Cinematic overlay -->
+        <div class="cinematic-overlay"></div>
+
+        <!-- Back arrow -->
+        <div class="back-arrow" id="backArrow">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo">
+            <span>2K26</span>
+        </div>
+
+        <!-- Particles -->
+        <div class="cinematic-particles" id="particles"></div>
+
+        <!-- CINEMATIC FULL-SCREEN BANNER -->
+        <div class="banner-container">
+            <div class="banner-track" id="bannerTrack">
+                <!-- Slide 1 - Full Screen Image -->
+                <div class="banner-slide slide-1">
+                    <img src="images/2k26/bogi21.jpeg" alt="Cinematic Shot 1" class="banner-image">
+                  
+                </div>
+                
+                <!-- Slide 2 - Full Screen Image -->
+                <div class="banner-slide slide-2">
+                    <img src="images/2k26/modern15.jpeg" alt="Cinematic Shot 2" class="banner-image">
+                    
+                </div>
+                
+                <!-- Slide 3 - Full Screen Image -->
+                <div class="banner-slide slide-3">
+                    <img src="images/2k26/bogi11.jpeg" alt="Cinematic Shot 3" class="banner-image">
+                    
+                </div>
+                
+                <!-- Slide 4 - Full Screen Image -->
+                <div class="banner-slide slide-4">
+                    <img src="images/2k26/bogi22.jpeg" alt="Cinematic Shot 4" class="banner-image">
+                   
+                </div>
+                
+                <!-- Slide 5 - Full Screen Image -->
+                <div class="banner-slide slide-5">
+                    <img src="images/2k26/bogi16.jpeg" alt="Cinematic Shot 5" class="banner-image">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Page indicator -->
+        <div class="page-indicator">
+            <div class="dot active" data-slide="0"></div>
+            <div class="dot" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+            <div class="dot" data-slide="3"></div>
+            <div class="dot" data-slide="4"></div>
+        </div>
+
+        <!-- View button -->
+        <div class="view-btn-container">
+            <button class="view-btn" id="viewButton">
+                <i class="fas fa-play-circle"></i> ENTER EXPERIENCE
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('container');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const backArrow = document.getElementById('backArrow');
+            const viewButton = document.getElementById('viewButton');
+            const bannerTrack = document.getElementById('bannerTrack');
+            const dots = document.querySelectorAll('.dot');
+            const particlesContainer = document.getElementById('particles');
+            
+            // Create cinematic particles
+            function createCinematicParticles() {
+                for (let i = 0; i < 100; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random cinematic properties
+                    const size = Math.random() * 6 + 2;
+                    const posX = Math.random() * 100;
+                    const delay = Math.random() * 15;
+                    const duration = Math.random() * 20 + 20;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    
+                    // Cinematic color variation
+                    const hue = 330 + Math.random() * 30;
+                    particle.style.background = `radial-gradient(circle, hsla(${hue}, 100%, 70%, 0.9) 0%, transparent 70%)`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Cinematic loading sequence
+            setTimeout(() => {
+                // Create cinematic flash effect
+                const flash = document.createElement('div');
+                flash.classList.add('cinematic-flash');
+                document.body.appendChild(flash);
+                
+                // Remove loading screen
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    loadingScreen.style.visibility = 'hidden';
+                    
+                    // Show main container with cinematic entrance
+                    setTimeout(() => {
+                        container.style.opacity = '1';
+                        createCinematicParticles();
+                        
+                        // Play cinematic sound effect (conceptual)
+                        console.log("🎬 CINEMATIC EXPERIENCE STARTED!");
+                    }, 300);
+                    
+                    // Remove flash
+                    setTimeout(() => {
+                        if (flash.parentNode) {
+                            flash.parentNode.removeChild(flash);
+                        }
+                    }, 1000);
+                }, 500);
+            }, 2500);
+            
+           // Back arrow with cinematic effect
+backArrow.addEventListener('click', function () {
+    // Cinematic exit effect
+    const exitFlash = document.createElement('div');
+    exitFlash.classList.add('cinematic-flash');
+    document.body.appendChild(exitFlash);
+
+    container.style.opacity = '0';
+
+    setTimeout(() => {
+        console.log("🎬 Returning to gallery...");
+
+        // Remove flash effect
+        if (exitFlash.parentNode) {
+            exitFlash.parentNode.removeChild(exitFlash);
+        }
+
+        // 👉 Redirect to gallery.html
+        window.location.href = "gallery.html";
+
+    }, 800); // Match this with your animation duration
+});
+//view.html page opening 
+  document.getElementById("viewButton").addEventListener("click", () => {
+        window.location.href = "view.html";
+    });
+            
+            // View button with cinematic interaction
+            viewButton.addEventListener('click', function() {
+                // Button cinematic press effect
+                viewButton.style.transform = 'translateY(0) scale(0.95)';
+                
+                // Create cinematic ripple
+                const ripple = document.createElement('div');
+                ripple.style.position = 'fixed';
+                ripple.style.top = '50%';
+                ripple.style.left = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.width = '0px';
+                ripple.style.height = '0px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'radial-gradient(circle, rgba(255,20,100,0.9) 0%, transparent 70%)';
+                ripple.style.zIndex = '9999';
+                ripple.style.animation = 'cinematicRipple 1s ease-out forwards';
+                document.body.appendChild(ripple);
+                
+                // Add ripple animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes cinematicRipple {
+                        0% { width: 0; height: 0; opacity: 1; }
+                        100% { width: 2000px; height: 2000px; opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Create flash
+                const flash = document.createElement('div');
+                flash.classList.add('cinematic-flash');
+                document.body.appendChild(flash);
+                
+                // Hide container
+                setTimeout(() => {
+                    container.style.opacity = '0';
+                    
+                    // Navigate after effect
+                    setTimeout(() => {
+                        console.log("🎬 Entering full cinematic experience...");
+                        alert('🎬 Welcome to the 2K26 Cinematic Experience!');
+                        
+                        // Clean up
+                        [ripple, flash, style].forEach(el => {
+                            if (el.parentNode) el.parentNode.removeChild(el);
+                        });
+                    }, 500);
+                }, 300);
+                
+                // Reset button
+                setTimeout(() => {
+                    viewButton.style.transform = '';
+                }, 200);
+            });
+            
+            // Slide control with cinematic effects
+            let currentSlide = 0;
+            const totalSlides = 5;
+            
+            function updateDots() {
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                        // Cinematic pulse effect
+                        dot.style.animation = 'dotPulse 0.5s ease';
+                        setTimeout(() => dot.style.animation = '', 500);
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Add dot pulse animation
+            const dotStyle = document.createElement('style');
+            dotStyle.textContent = `
+                @keyframes dotPulse {
+                    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,20,100,0.7); }
+                    70% { transform: scale(1.8); box-shadow: 0 0 0 20px rgba(255,20,100,0); }
+                    100% { transform: scale(1.5); box-shadow: 0 0 0 0 rgba(255,20,100,0); }
+                }
+            `;
+            document.head.appendChild(dotStyle);
+            
+            // Dot click with cinematic transition
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    currentSlide = slideIndex;
+                    
+                    // Pause current animations
+                    const currentImage = document.querySelector(`.slide-${slideIndex + 1} .banner-image`);
+                    currentImage.style.animationPlayState = 'running';
+                    
+                    // Move to slide with cinematic effect
+                    bannerTrack.style.animation = 'none';
+                    bannerTrack.style.transform = `translateX(-${slideIndex * 20}%)`;
+                    
+                    // Update dots
+                    updateDots();
+                    
+                    // Restart animation
+                    setTimeout(() => {
+                        bannerTrack.style.animation = 'cinematicSlideShow 35s infinite cubic-bezier(0.645, 0.045, 0.355, 1)';
+                        bannerTrack.style.animationDelay = `-${slideIndex * 7}s`;
+                    }, 10);
+                });
+            });
+            
+            // Auto slide with cinematic effect
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateDots();
+                
+                // Auto move track for seamless experience
+                bannerTrack.style.transform = `translateX(-${currentSlide * 20}%)`;
+                
+                // Trigger dot click for full transition
+                dots[currentSlide].click();
+            }, 7000);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    backArrow.style.transform = 'scale(1.3) rotate(-180deg)';
+                    setTimeout(() => backArrow.click(), 300);
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    viewButton.style.transform = 'scale(1.2)';
+                    setTimeout(() => viewButton.click(), 200);
+                } else if (e.key === 'ArrowRight') {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    dots[currentSlide].click();
+                } else if (e.key === 'ArrowLeft') {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    dots[currentSlide].click();
+                }
+            });
+            
+            // Touch swipe for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            container.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            container.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    // Create cinematic swipe effect
+                    const swipeEffect = document.createElement('div');
+                    swipeEffect.style.position = 'fixed';
+                    swipeEffect.style.top = '0';
+                    swipeEffect.style.left = diff > 0 ? '0' : 'auto';
+                    swipeEffect.style.right = diff > 0 ? 'auto' : '0';
+                    swipeEffect.style.width = '150px';
+                    swipeEffect.style.height = '100%';
+                    swipeEffect.style.background = `linear-gradient(${diff > 0 ? '90deg' : '-90deg'}, 
+                        rgba(255,20,100,0.4) 0%, 
+                        rgba(255,20,100,0.2) 30%, 
+                        transparent 100%)`;
+                    swipeEffect.style.zIndex = '999';
+                    swipeEffect.style.animation = 'swipeFade 0.5s ease-out forwards';
+                    document.body.appendChild(swipeEffect);
+                    
+                    const swipeStyle = document.createElement('style');
+                    swipeStyle.textContent = `@keyframes swipeFade { 0% { opacity: 1; } 100% { opacity: 0; } }`;
+                    document.head.appendChild(swipeStyle);
+                    
+                    setTimeout(() => {
+                        if (swipeEffect.parentNode) swipeEffect.parentNode.removeChild(swipeEffect);
+                        if (swipeStyle.parentNode) swipeStyle.parentNode.removeChild(swipeStyle);
+                    }, 500);
+                    
+                    if (diff > 0) {
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                    } else {
+                        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    }
+                    dots[currentSlide].click();
+                }
+            }
+            
+            // Hover effects for images
+            document.querySelectorAll('.banner-slide').forEach(slide => {
+                slide.addEventListener('mouseenter', function() {
+                    const image = this.querySelector('.banner-image');
+                    const title = this.querySelector('.cinematic-title');
+                    
+                    // Enhance image on hover
+                    image.style.transform = 'scale(1.05) translateZ(100px)';
+                    image.style.filter = 'brightness(1.2) contrast(1.4) saturate(1.3)';
+                    
+                    // Enhance title
+                    if (title) {
+                        title.style.transform = 'translateY(0) scale(1.05)';
+                        title.style.opacity = '1';
+                    }
+                });
+                
+                slide.addEventListener('mouseleave', function() {
+                    const image = this.querySelector('.banner-image');
+                    const title = this.querySelector('.cinematic-title');
+                    
+                    // Reset image
+                    image.style.transform = '';
+                    image.style.filter = '';
+                    
+                    // Reset title
+                    if (title) {
+                        title.style.transform = '';
+                    }
+                });
+            });
+            
+            // Initialize
+            updateDots();
+            
+            // Add cinematic audio (conceptual - would be actual audio in production)
+            console.log("🎵 Cinematic soundtrack loaded");
+            console.log("🎨 Visual effects initialized");
+            console.log("✨ Experience ready - Prepare to be amazed!");
+        });
+    </script>
+</body>
+</html>

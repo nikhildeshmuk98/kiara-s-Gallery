@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2K26 Sankranti Experience of Kiyara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --sankranti-orange: #FF6B35;
+            --sankranti-yellow: #FFD700;
+            --sankranti-green: #4CAF50;
+            --sankranti-red: #E53935;
+            --sankranti-blue: #2196F3;
+            --sankranti-purple: #9C27B0;
+            --dark-bg: #0A1929;
+            --glass-bg: rgba(255, 107, 53, 0.15);
+            --glass-border: rgba(255, 214, 0, 0.3);
+            --glass-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+            --text-light: #ffffff;
+            --glow-orange: 0 0 20px rgba(255, 107, 53, 0.7);
+            --glow-yellow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A1929 0%, #1A2C42 50%, #0A1929 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sankranti Theme Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(76, 175, 80, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 30% 70%, rgba(33, 150, 243, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* Sankranti Pattern Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23FF6B35' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Flying Kites Animation */
+        .kite {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--sankranti-orange), var(--sankranti-yellow));
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            opacity: 0.4;
+            animation: float 15s infinite linear;
+            z-index: -1;
+        }
+
+        .kite:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            background: linear-gradient(45deg, var(--sankranti-orange), var(--sankranti-red));
+        }
+
+        .kite:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 3s;
+            background: linear-gradient(45deg, var(--sankranti-green), var(--sankranti-yellow));
+        }
+
+        .kite:nth-child(3) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 6s;
+            background: linear-gradient(45deg, var(--sankranti-blue), var(--sankranti-green));
+        }
+
+        .kite:nth-child(4) {
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 9s;
+            background: linear-gradient(45deg, var(--sankranti-yellow), var(--sankranti-orange));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(20px) rotate(270deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            margin: 20px auto 40px;
+            width: 100%;
+            max-width: 1600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 107, 53, 0.1), 
+                rgba(255, 215, 0, 0.1), 
+                transparent);
+            pointer-events: none;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-button {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--sankranti-yellow);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 107, 53, 0.3);
+            border: 2px solid rgba(255, 214, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-red));
+            transform: translateX(-5px) scale(1.1);
+            box-shadow: var(--glow-orange);
+            color: white;
+        }
+
+        .back-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .nav-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--sankranti-orange), var(--sankranti-yellow), var(--sankranti-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .nav-title::before, .nav-title::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sankranti-yellow);
+            font-size: 1.2rem;
+            animation: spin 4s linear infinite;
+        }
+
+        .nav-title::before {
+            left: -5px;
+        }
+
+        .nav-title::after {
+            right: -5px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--sankranti-yellow);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            background: rgba(255, 107, 53, 0.3);
+            border: 2px solid rgba(255, 214, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .nav-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .nav-icon:hover {
+            transform: translateY(-5px) scale(1.15);
+            color: white;
+            box-shadow: var(--glow-yellow);
+        }
+
+        .nav-icon:hover::before {
+            transform: translateX(100%);
+        }
+
+        #imageIcon:hover {
+            background: linear-gradient(135deg, var(--sankranti-blue), var(--sankranti-purple));
+            border-color: var(--sankranti-blue);
+        }
+
+        #videoIcon:hover {
+            background: linear-gradient(135deg, var(--sankranti-green), var(--sankranti-blue));
+            border-color: var(--sankranti-green);
+        }
+
+        /* Hero Section - Full Video Display */
+        .hero-section {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+            border: 3px solid rgba(255, 214, 0, 0.3);
+            background: rgba(10, 25, 41, 0.5);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: #000;
+            min-height: 500px;
+        }
+
+        #heroVideo {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            object-fit: contain;
+            max-height: 75vh;
+            min-height: 500px;
+            background: #000;
+        }
+
+        /* Sankranti Decorative Elements */
+        .sankranti-decoration {
+            position: absolute;
+            z-index: 2;
+        }
+
+        .decoration-top {
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: var(--sankranti-yellow);
+            text-shadow: var(--glow-yellow);
+            animation: bounce 2s infinite;
+        }
+
+        .decoration-left, .decoration-right {
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: var(--sankranti-orange);
+            animation: floatSide 3s infinite ease-in-out;
+        }
+
+        .decoration-left {
+            left: -20px;
+        }
+
+        .decoration-right {
+            right: -20px;
+        }
+
+        .decoration-bottom {
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: var(--sankranti-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @keyframes floatSide {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Sound Control */
+        .sound-control-container {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .sound-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-red));
+            border: 3px solid var(--sankranti-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 10px 30px rgba(255, 107, 53, 0.4),
+                0 0 0 0 rgba(255, 107, 53, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sound-toggle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sound-toggle:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 
+                0 15px 40px rgba(255, 107, 53, 0.6),
+                0 0 0 10px rgba(255, 107, 53, 0.2);
+            background: linear-gradient(135deg, var(--sankranti-red), var(--sankranti-orange));
+        }
+
+        .sound-toggle:hover::before {
+            opacity: 1;
+        }
+
+        .sound-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .sound-toggle.muted {
+            background: linear-gradient(135deg, #666, #333);
+            border-color: #888;
+        }
+
+        .sound-status {
+            padding: 8px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--sankranti-yellow);
+            border: 1px solid var(--sankranti-yellow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            transform: translateY(10px);
+        }
+
+        .sound-toggle:hover + .sound-status {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sankranti Greeting */
+        .sankranti-greeting {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 5;
+        }
+
+        .greeting-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--sankranti-yellow), var(--sankranti-orange), var(--sankranti-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            animation: greetingGlow 3s infinite alternate;
+        }
+
+        @keyframes greetingGlow {
+            0% { 
+                text-shadow: 0 5px 15px rgba(255, 107, 53, 0.3); 
+                filter: brightness(1);
+            }
+            100% { 
+                text-shadow: 
+                    0 5px 25px rgba(255, 107, 53, 0.6), 
+                    0 0 30px rgba(255, 215, 0, 0.4),
+                    0 0 40px rgba(255, 215, 0, 0.2);
+                filter: brightness(1.2);
+            }
+        }
+
+        /* Sankranti Theme Badge */
+        .theme-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--sankranti-orange), var(--sankranti-yellow));
+            border-radius: 50px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+            z-index: 5;
+            border: 2px solid white;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Page Enter Animation */
+        @keyframes pageEnter {
+            0% { 
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(10px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .page-content {
+            animation: pageEnter 1s ease-out forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Video Loader */
+        .video-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 1;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 107, 53, 0.2);
+            border-top: 5px solid var(--sankranti-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--sankranti-yellow);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Sankranti Message */
+        .sankranti-message {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--sankranti-yellow);
+            color: var(--sankranti-yellow);
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 80%;
+            z-index: 5;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Navigation Transition Overlay */
+        .nav-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-yellow));
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+
+        .nav-transition.active {
+            transform: translateY(0);
+        }
+
+        .transition-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .transition-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: spin 2s linear infinite;
+        }
+
+        .transition-text {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .transition-subtext {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+            
+            .nav-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-title {
+                font-size: 1.5rem;
+                text-align: center;
+                flex-grow: 1;
+            }
+            
+            .nav-icons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-section {
+                padding: 15px;
+            }
+            
+            #heroVideo {
+                max-height: 60vh;
+                min-height: 300px;
+            }
+            
+            .greeting-text {
+                font-size: 1.8rem;
+            }
+            
+            .sound-toggle {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+            
+            .decoration-top, .decoration-left, .decoration-right, .decoration-bottom {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-title {
+                font-size: 1.3rem;
+            }
+            
+            .back-button, .nav-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            #heroVideo {
+                max-height: 50vh;
+                min-height: 250px;
+            }
+            
+            .greeting-text {
+                font-size: 1.5rem;
+            }
+            
+            .theme-badge {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Sankranti Celebration Text */
+        .celebration-text {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--sankranti-yellow);
+            font-size: 0.9rem;
+            color: var(--sankranti-yellow);
+            max-width: 300px;
+            z-index: 5;
+        }
+
+        /* Video Controls Enhancement */
+        .video-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 5;
+        }
+
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--sankranti-orange);
+            color: var(--sankranti-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--sankranti-orange);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Add decorative sparkles */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--sankranti-yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: sparkle 1s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* Add keyframes for spin animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Flying Kites -->
+    <div class="kite"></div>
+    <div class="kite"></div>
+    <div class="kite"></div>
+    <div class="kite"></div>
+
+    <!-- Navigation Transition Overlay -->
+    <div class="nav-transition" id="navTransition">
+        <div class="transition-content">
+            <div class="transition-icon" id="transitionIcon"></div>
+            <div class="transition-text" id="transitionText">Loading...</div>
+            <div class="transition-subtext" id="transitionSubtext">Get ready for Sankranti magic!</div>
+        </div>
+    </div>
+
+    <div class="page-content">
+       >
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar glass">
+            <div class="nav-left">
+                <div class="back-button glass" id="backButton" title="Go back to 2K26">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="nav-title">2K26 Experience of Kiyara</div>
+            </div>
+            <div class="nav-icons">
+                <div class="nav-icon glass" id="imageIcon" title="View Sankranti Images">
+                    <i class="fas fa-images"></i>
+                </div>
+                <div class="nav-icon glass" id="videoIcon" title="View Sankranti Videos">
+                    <i class="fas fa-video"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <main class="hero-section glass">
+            <!-- Sankranti Greeting -->
+           
+            <!-- Sankranti Decorations -->
+            <div class="sankranti-decoration decoration-top">
+                <i class="fas fa-sun"></i>
+            </div>
+            <div class="sankranti-decoration decoration-left">
+                <i class="fas fa-feather-alt"></i>
+            </div>
+            <div class="sankranti-decoration decoration-right">
+                <i class="fas fa-wind"></i>
+            </div>
+            <div class="sankranti-decoration decoration-bottom">
+                <i class="fas fa-star"></i>
+            </div>
+
+            <!-- Video Container -->
+            <div class="video-container">
+                <!-- Video Loader -->
+                <div class="video-loader" id="videoLoader">
+                    <div class="loader-spinner"></div>
+                    <div class="loader-text">Loading Sankranti Joy...</div>
+                </div>
+
+                <!-- Hero Video -->
+                <video id="heroVideo" preload="metadata">
+                    <source src="vedios/baby/sankranti.mp4" type="video/mp4">
+                    <source src="vedios/baby/sankranti.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+
+                
+
+                <!-- Sound Control -->
+                <div class="sound-control-container">
+                    <div class="sound-toggle glass" id="soundToggle">
+                        <i class="fas fa-volume-mute"></i>
+                    </div>
+                    <div class="sound-status">Click to toggle sound</div>
+                </div>
+            </div>
+
+            
+        </main>
+    </div>
+
+    <script>
+        // DOM Elements
+        const backButton = document.getElementById('backButton');
+        const heroVideo = document.getElementById('heroVideo');
+        const soundToggle = document.getElementById('soundToggle');
+        const videoLoader = document.getElementById('videoLoader');
+        const imageIcon = document.getElementById('imageIcon');
+        const videoIcon = document.getElementById('videoIcon');
+        const navTransition = document.getElementById('navTransition');
+        const transitionIcon = document.getElementById('transitionIcon');
+        const transitionText = document.getElementById('transitionText');
+        const transitionSubtext = document.getElementById('transitionSubtext');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+
+        // State variables
+        let isMuted = true; // Start muted
+        let isTransitioning = false;
+
+        // Initialize the page
+        function init() {
+            // Show welcome message
+            setTimeout(() => {
+                welcomeMessage.style.display = 'none';
+            }, 5000);
+
+            // Show loader while video loads
+            videoLoader.style.display = 'flex';
+            
+            // Set initial muted state
+            heroVideo.muted = isMuted;
+            updateSoundButton();
+
+            // Video loading events
+            heroVideo.addEventListener('loadeddata', () => {
+                videoLoader.style.display = 'none';
+                heroVideo.style.opacity = '1';
+                
+                // Try to auto-play video (muted)
+                const playPromise = heroVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => {
+                        console.log("Autoplay prevented:", e);
+                        // Show play button overlay
+                        createPlayOverlay();
+                    });
+                }
+            });
+
+            heroVideo.addEventListener('canplay', () => {
+                // Video can start playing
+                console.log("Video ready to play");
+            });
+
+            // Video error handling
+            heroVideo.addEventListener('error', (e) => {
+                console.error("Video error:", e);
+                videoLoader.innerHTML = `
+                    <div style="color: #FF6B35; font-size: 2rem; margin-bottom: 10px;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div style="color: #FFD700; text-align: center;">
+                        Video not found or cannot be loaded<br>
+                        <small>Please check the video path or try a different video</small>
+                    </div>
+                    <button onclick="retryVideo()" style="
+                        margin-top: 15px;
+                        padding: 8px 20px;
+                        background: var(--sankranti-orange);
+                        color: white;
+                        border: none;
+                        border-radius: 20px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">
+                        Retry Loading
+                    </button>
+                `;
+            });
+
+            // Add event listeners
+            backButton.addEventListener('click', goBack);
+            soundToggle.addEventListener('click', toggleSound);
+            
+            // Navigation to images.html
+            imageIcon.addEventListener('click', () => {
+                if (!isTransitioning) {
+                    navigateToPage('images.html', 'images', 'Loading beautiful images of kiyara');
+                }
+            });
+            
+            // Navigation to videos.html
+            videoIcon.addEventListener('click', () => {
+                if (!isTransitioning) {
+                    navigateToPage('videos.html', 'videos', 'Loading Amazing  Videos...');
+                }
+            });
+
+            // Add click effect to navigation buttons
+            [backButton, imageIcon, videoIcon, soundToggle].forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    createSparkles(e.clientX, e.clientY);
+                });
+            });
+
+            // Add video time update for status
+            heroVideo.addEventListener('timeupdate', updateVideoStatus);
+            
+            // Add video ended event
+            heroVideo.addEventListener('ended', () => {
+                // Show celebration message when video ends
+                showToast('🎉 Video Ended! Happy Sankranti!', 'success');
+                
+                // Auto restart video after 3 seconds
+                setTimeout(() => {
+                    heroVideo.currentTime = 0;
+                    heroVideo.play();
+                }, 3000);
+            });
+
+            // Initialize with muted video
+            setTimeout(() => {
+                if (heroVideo.paused) {
+                    createPlayOverlay();
+                }
+            }, 1000);
+        }
+
+        // Create play overlay for autoplay blocked
+        function createPlayOverlay() {
+            const playOverlay = document.createElement('div');
+            playOverlay.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-radius: 20px;
+                z-index: 10;
+            `;
+            
+            playOverlay.innerHTML = `
+                <div style="
+                    color: var(--sankranti-yellow);
+                    font-size: 4rem;
+                    margin-bottom: 20px;
+                    animation: bounce 1s infinite;
+                ">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div style="
+                    color: white;
+                    font-size: 1.5rem;
+                    margin-bottom: 15px;
+                    text-align: center;
+                    padding: 0 20px;
+                ">
+                    Click to Play Sankranti Video
+                </div>
+                <button onclick="playVideoManually(this)" style="
+                    padding: 12px 30px;
+                    background: linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-red));
+                    color: white;
+                    border: 2px solid var(--sankranti-yellow);
+                    border-radius: 25px;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                ">
+                    <i class="fas fa-play"></i> Play Now
+                </button>
+            `;
+            
+            const videoContainer = document.querySelector('.video-container');
+            videoContainer.appendChild(playOverlay);
+            
+            // Add CSS for bounce animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes bounce {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Manual video play function
+        function playVideoManually(button) {
+            const videoContainer = document.querySelector('.video-container');
+            const playOverlay = videoContainer.querySelector('div[style*="background: rgba(0, 0, 0, 0.7)"]');
+            
+            if (playOverlay) {
+                playOverlay.style.opacity = '0';
+                setTimeout(() => playOverlay.remove(), 300);
+            }
+            
+            heroVideo.play().then(() => {
+                showToast('Enjoy the Sankranti celebration! 🎉', 'success');
+                updateSoundButton();
+            }).catch(e => {
+                console.error("Play failed:", e);
+                showToast('Could not play video. Please try again.', 'error');
+            });
+        }
+
+        // Navigate to another page with beautiful transition
+        function navigateToPage(url, pageType, message) {
+            isTransitioning = true;
+            
+            // Set transition content based on page type
+            if (pageType === 'images') {
+                transitionIcon.innerHTML = '<i class="fas fa-images"></i>';
+                transitionText.textContent = ' 2K26 Gallery';
+                transitionSubtext.textContent = message;
+            } else if (pageType === 'videos') {
+                transitionIcon.innerHTML = '<i class="fas fa-video"></i>';
+                transitionText.textContent = ' 2K26 Videos';
+                transitionSubtext.textContent = message;
+            }
+            
+            // Show transition overlay
+            navTransition.classList.add('active');
+            
+            // Pause current video
+            heroVideo.pause();
+            
+            // Navigate after delay
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1500);
+        }
+
+        // Go back to 2K26.html
+        function goBack() {
+            // Add exit animation
+            document.querySelector('.page-content').style.animation = 'pageEnter 0.5s reverse forwards';
+            
+            // Set transition for going back
+            transitionIcon.innerHTML = '<i class="fas fa-home"></i>';
+            transitionText.textContent = 'Returning 2k26 Experience';
+            transitionSubtext.textContent = 'Going back to main page...';
+            navTransition.classList.add('active');
+            
+            // Pause video before leaving
+            heroVideo.pause();
+            
+            // Navigate back after animation
+            setTimeout(() => {
+                window.location.href = '2K26.html';
+            }, 1000);
+        }
+
+        // Toggle sound on/off
+        function toggleSound() {
+            isMuted = !isMuted;
+            heroVideo.muted = isMuted;
+            
+            updateSoundButton();
+            
+            // If unmuting and video is paused, play it
+            if (!isMuted && heroVideo.paused) {
+                heroVideo.play().catch(e => {
+                    console.log("Play failed:", e);
+                });
+            }
+            
+            // Show appropriate toast
+            if (isMuted) {
+                showToast('🔇 Sound Muted', 'info');
+            } else {
+                showToast('🔊 Sound On - Enjoy!', 'success');
+                // Create audio visualizer effect
+                createSoundVisualizer();
+            }
+        }
+
+        // Update sound button appearance
+        function updateSoundButton() {
+            const icon = soundToggle.querySelector('i');
+            
+            if (heroVideo.muted) {
+                icon.className = 'fas fa-volume-mute';
+                soundToggle.classList.add('muted');
+                soundToggle.style.background = 'linear-gradient(135deg, #666, #333)';
+                soundToggle.style.borderColor = '#888';
+            } else {
+                icon.className = 'fas fa-volume-up';
+                soundToggle.classList.remove('muted');
+                soundToggle.style.background = 'linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-red))';
+                soundToggle.style.borderColor = 'var(--sankranti-yellow)';
+            }
+        }
+
+        // Update video loading status
+        function updateVideoStatus() {
+            if (!heroVideo.paused && !heroVideo.muted) {
+                soundToggle.style.background = 'linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-red))';
+            }
+        }
+
+        // Create visualizer effect when sound is turned on
+        function createSoundVisualizer() {
+            const container = soundToggle.parentElement;
+            
+            // Create 8 audio bars around the button
+            for (let i = 0; i < 8; i++) {
+                const bar = document.createElement('div');
+                const angle = (i * 45) * Math.PI / 180;
+                const radius = 60;
+                
+                bar.style.cssText = `
+                    position: absolute;
+                    width: 4px;
+                    height: 20px;
+                    background: linear-gradient(to top, var(--sankranti-yellow), var(--sankranti-orange));
+                    border-radius: 2px;
+                    top: 50%;
+                    left: 50%;
+                    transform-origin: 0 0;
+                    transform: 
+                        translate(-50%, -50%)
+                        rotate(${i * 45}deg)
+                        translateY(-${radius}px);
+                    animation: audioBar 1s ease-in-out infinite;
+                    animation-delay: ${i * 0.1}s;
+                    opacity: 0.7;
+                `;
+                
+                container.appendChild(bar);
+                
+                // Remove bars after animation
+                setTimeout(() => {
+                    bar.style.opacity = '0';
+                    setTimeout(() => bar.remove(), 500);
+                }, 1000);
+            }
+            
+            // Add CSS for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes audioBar {
+                    0%, 100% { 
+                        height: 10px;
+                        opacity: 0.5;
+                    }
+                    50% { 
+                        height: 30px;
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            setTimeout(() => style.remove(), 1500);
+        }
+
+        // Create sparkle effect on click
+        function createSparkles(x, y) {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Random position around click
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 30 + Math.random() * 20;
+                const sparkleX = x + Math.cos(angle) * distance;
+                const sparkleY = y + Math.sin(angle) * distance;
+                
+                sparkle.style.left = sparkleX + 'px';
+                sparkle.style.top = sparkleY + 'px';
+                sparkle.style.background = i % 2 === 0 ? 'var(--sankranti-yellow)' : 'var(--sankranti-orange)';
+                sparkle.style.animationDelay = (i * 0.1) + 's';
+                
+                document.body.appendChild(sparkle);
+                
+                // Remove sparkle after animation
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            // Remove existing toast
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            
+            let bgColor = 'linear-gradient(135deg, var(--sankranti-orange), var(--sankranti-red))';
+            if (type === 'success') {
+                bgColor = 'linear-gradient(135deg, var(--sankranti-green), var(--sankranti-blue))';
+            } else if (type === 'error') {
+                bgColor = 'linear-gradient(135deg, var(--sankranti-red), #C62828)';
+            }
+            
+            toast.innerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: ${bgColor};
+                    color: white;
+                    padding: 15px 30px;
+                    border-radius: 50px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                    z-index: 1000;
+                    animation: fadeInOut 2s ease-in-out;
+                    border: 2px solid white;
+                    font-weight: 600;
+                    text-align: center;
+                    min-width: 200px;
+                    backdrop-filter: blur(10px);
+                ">
+                    ${message}
+                </div>
+            `;
+            
+            // Add CSS for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { 
+                        opacity: 0; 
+                        transform: translateX(-50%) translateY(20px); 
+                    }
+                    15% { 
+                        opacity: 1; 
+                        transform: translateX(-50%) translateY(0); 
+                    }
+                    85% { 
+                        opacity: 1; 
+                        transform: translateX(-50%) translateY(0); 
+                    }
+                    100% { 
+                        opacity: 0; 
+                        transform: translateX(-50%) translateY(-20px); 
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(toast);
+            
+            // Remove toast after animation
+            setTimeout(() => {
+                toast.remove();
+                style.remove();
+            }, 2000);
+        }
+
+        // Retry video loading
+        function retryVideo() {
+            videoLoader.style.display = 'flex';
+            videoLoader.innerHTML = `
+                <div class="loader-spinner"></div>
+                <div class="loader-text">Retrying video...</div>
+            `;
+            
+            // Reset video source
+            heroVideo.load();
+            
+            // Try to play again
+            setTimeout(() => {
+                heroVideo.play().catch(e => {
+                    console.log("Still cannot play:", e);
+                });
+            }, 1000);
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+        
+        // Add console welcome message
+        console.log('%c🎉 Welcome to Kiyara\'s Sankranti 2K26 Experience! 🪁', 
+            'color: #FFD700; font-size: 18px; font-weight: bold; background: #FF6B35; padding: 5px;');
+        console.log('%cExperience the joy and colors of Sankranti!', 
+            'color: #4CAF50; font-size: 14px;');
+    </script>
+</body>
+</html>
